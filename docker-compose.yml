@@ -1,0 +1,34 @@
+version: '3'
+services:
+  penkiba-mysql:
+    container_name: penkiba-mysql
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: penkiba_db
+      MYSQL_ROOT_PASSWORD: 'Root123#@!'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: 'Dev123#@!'
+    ports:
+    - "3307:3306"
+    restart: always
+
+  penkiba-ifsas:
+    container_name: penkiba-ifsas
+    build: .
+    volumes:
+    - .:/app
+    - ~/.m2:/root/.m2
+    working_dir: /app
+    ports:
+    - 9099:9099
+    command: mvn clean spring-boot:run
+    environment:
+      - WAIT_HOSTS=mysql:3307
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+    depends_on:
+    - penkiba-mysql
+volumes:
+  db_data:

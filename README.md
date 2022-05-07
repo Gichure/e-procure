@@ -1,5 +1,5 @@
 # e-pro-cure
-E-Procurement Application to meet the needs of automation in the internal procurement process of a company.  
+E-Procurement System to meet the needs of automation in the internal procurement process of a company.  
 ## Overview
 1.  The application has been developed using microservice approach.  
 2.  We use git monorepo where all microservices are the modules in a single respository.
@@ -39,7 +39,8 @@ E-Procurement Application to meet the needs of automation in the internal procur
 
 ## Starting Up
 
-
+## Postman Collection
+You can access the postman collection [here]()
 ### Process Flow
 ![](images/process_flow.jpg)
 
