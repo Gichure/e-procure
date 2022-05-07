@@ -1,34 +1,68 @@
 version: '3'
-services:
-  penkiba-mysql:
-    container_name: penkiba-mysql
-    image: mysql/mysql-server:5.7
-    environment:
-      MYSQL_DATABASE: penkiba_db
-      MYSQL_ROOT_PASSWORD: 'Root123#@!'
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_USER: dev
-      MYSQL_PASSWORD: 'Dev123#@!'
-    ports:
-    - "3307:3306"
-    restart: always
 
-  penkiba-ifsas:
-    container_name: penkiba-ifsas
-    build: .
-    volumes:
-    - .:/app
-    - ~/.m2:/root/.m2
-    working_dir: /app
-    ports:
-    - 9099:9099
-    command: mvn clean spring-boot:run
+services:
+  discovery-service:
+    image: e-procure/discovery-service:latest
+    container_name: discovery-service
+    build:
+      args:
+        - APP_NAME=discovery-service
+        - APP_VERSION=1.0.0
     environment:
-      - WAIT_HOSTS=mysql:3307
-      - WAIT_HOSTS_TIMEOUT=300
-      - WAIT_SLEEP_INTERVAL=30
-      - WAIT_HOST_CONNECT_TIMEOUT=30
-    depends_on:
-    - penkiba-mysql
-volumes:
-  db_data:
+      SPRING_PROFILES_ACTIVE: dev
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+  configurations-service:
+    image: e-procure/configurations-service:latest
+    container_name: configurations-service
+    build:
+      args:
+        - APP_NAME=configurations-service
+        - APP_VERSION=1.0.0
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    expose:
+      - 8888
+    ports:
+      - 8888:8888
+  gateway-service:
+    image: e-procure/gateway-service:latest
+    container_name: gateway-service
+    build:
+      args:
+        - APP_NAME=gateway-service
+        - APP_VERSION=1.0.0
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    expose:
+      - 8081
+    ports:
+      - 8081:8081
+  setups-service:
+    image: e-procure/setups-service:latest
+    container_name: setups-service
+    build:
+      args:
+        - APP_NAME=setups-service
+        - APP_VERSION=1.0.0
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    expose:
+      - 8084
+    ports:
+      - 8084:8084
+  workflow-service:
+    image: e-procure/workflow-service:latest
+    container_name: workflow-service
+    build:
+      args:
+        - APP_NAME=workflow-service
+        - APP_VERSION=1.0.0
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    expose:
+      - 8083
+    ports:
+      - 8083:8083
