@@ -26,16 +26,16 @@ E-Procurement System to meet the needs of automation in the internal procurement
 8.  Payment Processing
 
 ## Services
-1.  configurations-service
-2.  discovery-service
-3.  gateway-service
-4.  setups-service
-5.  workflow-service
-6.  inventory-service
-7.  suppliers-service
-8.  orders-service
-9.  invoices-service
-10. payments-service
+1.  [configurations-service](configurations-service/README.md)
+2.  [discovery-service](discovery-service/README.md)
+3.  [gateway-service](gateway-service/README.md)
+4.  [setups-service](setups-service/README.md)
+5.  [workflow-service](workflow-service/README.md)
+6.  [inventory-service](inventory-service/README.md)
+7.  [suppliers-service](suppliers-service/README.md)
+8.  [orders-service](orders-service/README.md)
+9.  [invoices-service](invoices-service/README.md)
+10. [payments-service](payments-service/README.md)
 
 ## Starting Up
 
@@ -52,5 +52,5 @@ You can access the postman collection [here]()
 
 #### Disclaimer
 This project is purely for learning purposes and thus it is subject to change without notice.  
-Should you need a stable version,reach out at e-procure@gichure.me.ke or fork a branch. 
+Should you need a stable version,reach out at e-procure@gichure.me.ke or fork this repository. 
  I also do not offer support services as well.  
