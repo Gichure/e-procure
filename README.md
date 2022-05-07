@@ -42,16 +42,15 @@ E-Procurement System to meet the needs of automation in the internal procurement
 ## Postman Collection
 You can access the postman collection [here]()  
 ### Process Flow
-![](images/process_flow.jpg)
-
-#### References
--  http://eprints.binus.ac.id/36924/1/Paper1stauthorIjeter30872020.pdf
--  https://planergy.com/blog/procurement-process-cycle/
--  https://codingnconcepts.com/spring-boot/deployment-of-microservices-using-docker-and-jenkins/
--  https://github.com/ashishlahoti/springboot-microservices
+![](resources/images/process_flow.jpg)
 
 #### Contributions
--  [Paul Gichure](https://linkedin.com/in/gichure)
+-  [Paul Gichure](https://linkedin.com/in/gichure). You can reach out at e-procure@gichure.me.ke
 
 #### License
 [MIT](LICENSE.md)
+
+#### Disclaimer
+This project is purely for learning purposes and thus it is subject to change without notice.  
+Should you need a stable version,reach out at e-procure@gichure.me.ke or fork a branch. 
+ I also do not offer support services as well.  
