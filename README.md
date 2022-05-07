@@ -32,10 +32,13 @@ E-Procurement Application to meet the needs of automation in the internal procur
 4.  setups-service
 5.  workflow-service
 6.  inventory-service
-7.  vendor-service
-8.  purchase-order-service
-9.  invoice-service
-10. payment-service
+7.  suppliers-service
+8.  orders-service
+9.  invoices-service
+10. payments-service
+
+## Starting Up
+
 
 ### Process Flow
 ![](images/process_flow.jpg)

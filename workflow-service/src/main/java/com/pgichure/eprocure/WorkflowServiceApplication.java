@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pgichure.eprocure.setups;
+package com.pgichure.eprocure;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,14 +13,13 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @EnableEurekaClient
 @SpringBootApplication
-public class SetupsServiceApplication {
+public class WorkflowServiceApplication {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(SetupsServiceApplication.class, args);
+		SpringApplication.run(WorkflowServiceApplication.class, args);
 	}
-	
 	
 }
