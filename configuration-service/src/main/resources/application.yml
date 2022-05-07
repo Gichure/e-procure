@@ -1,8 +1,33 @@
 spring:
   application:
+   # name of the application
     name: configurations-service
+   # available profiles of the application 
+  profiles:
+    active: test,dev,uat,prod
+  cloud:
+    config:
+      server:
+        git:
+          # git url where the configurations are stored
+          uri: https://github.com/gichure/e-procure
+          # if configurations are in sub folders search the subfolder by below name
+          search-paths: configs
 server:
-  port: 8082
+  # config server port
+  port: 8888
+management:
+  security:
+  # disable security of the config server
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include:
+          - mappings
+          - env
+          - health
+          - info
 eureka:
   client:
     registerWithEureka: true
@@ -10,3 +35,6 @@ eureka:
       defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
     healthcheck:
       enabled: true
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"

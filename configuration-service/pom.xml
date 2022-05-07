@@ -3,8 +3,61 @@
   <groupId>com.pgichure.eprocure</groupId>
   <artifactId>configurations-service</artifactId>
   <version>1.0.0</version>
-  
-  
+  <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.6</version>
+  	</parent>
+	<packaging>jar</packaging>
+	<name>E-Procurement System Configuration Service</name>
+	<description>E-Procurement System to meet the needs of automation in the internal procurement process of a company.</description>
+	<developers>
+		<developer>
+			<id>pgichure</id>
+			<name>Paul Gichure</name>
+			<email>gichurepaul@gmail.com</email>
+			<roles>
+				<role>Lead Developer</role>
+			</roles>
+			<timezone>+3</timezone>
+			<url>http://www.gichure.me.ke</url>
+		</developer>
+	</developers>
+	<properties>
+		<app.name>E-Procurement System</app.name>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>2021.0.2</spring-cloud.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+	  	<dependency>
+	    	<groupId>org.springframework.cloud</groupId>
+	    	<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
   <build>
     	<finalName>${project.artifactId}-${project.version}</finalName>
     	<plugins>

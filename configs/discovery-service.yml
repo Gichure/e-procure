@@ -16,3 +16,5 @@ logging:
       netflix:
         eureka: OFF
         discovery: OFF
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
