@@ -3,6 +3,9 @@
  */
 package com.pgichure.eprocure.setups;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * @author pgichure
  *

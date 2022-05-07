@@ -9,8 +9,8 @@
   	<artifactId>e-procure</artifactId>
   	<version>1.0.0</version>
 	<packaging>pom</packaging>
-	<name>e-pro-cure</name>
-	<description>E-Procurement Application to meet the needs of automation in the internal procurement process of a company.</description>
+	<name>${app.name}</name>
+	<description>E-Procurement System to meet the needs of automation in the internal procurement process of a company.</description>
 	<developers>
 		<developer>
 			<id>pgichure</id>
@@ -24,11 +24,11 @@
 		</developer>
 	</developers>
 	<modules>
-  	  <module>configurations-service</module>
+  	<!--  <module>configurations-service</module>
 	  <module>discovery-service</module>
-	  <module>gateway-service</module>
+	  <module>gateway-service</module> -->
 	  <module>setups-service</module>
-	  <module>workflow-service</module>
+	<!--  <module>workflow-service</module> -->
 	</modules>
 	<properties>
 		<app.name>E-Procurement System</app.name>
