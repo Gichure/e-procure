@@ -1,1 +1,7 @@
-
+TODOs
+a. authentication service to handle system/organization profiles, system permissions, system features, system users
+b. add zipkin service
+Composer notes
+https://www.kindsonthegenius.com/introduction-to-docker-compose-with-spring-boot-example/
+https://www.sivalabs.in/microservices-part-2-configuration-management-spring-cloud-config-vault/
+https://www.sivalabs.in/microservices-part-6-distributed-tracing-with-spring-cloud-sleuth-and-zipkin/
