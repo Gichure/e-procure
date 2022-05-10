@@ -1,12 +1,19 @@
 TODOs
 a. authentication service to handle system/organization profiles, system permissions, system features, system users
 b. add zipkin service
-Composer notes
+c. add frontend service
+
+Docker Composer notes
 https://www.kindsonthegenius.com/introduction-to-docker-compose-with-spring-boot-example/
 https://www.sivalabs.in/microservices-part-2-configuration-management-spring-cloud-config-vault/
 https://www.sivalabs.in/microservices-part-6-distributed-tracing-with-spring-cloud-sleuth-and-zipkin/
 
+Authentication Notes
 https://dev.to/prafful/spring-boot-rest-api-authentication-best-practices-using-jwt-2022-3j2d
-https://github.com/sivaprasadreddy/spring-boot-microservices-series
-
 https://github.com/prafful98/rest-api-authentication-tutorial
+
+Frontend Service
+https://medium.com/xebia-engineering/a-minimalistic-guide-to-building-and-deploying-monolithic-spring-boot-react-applications-39440035b27
+
+Sample
+https://github.com/sivaprasadreddy/spring-boot-microservices-series
