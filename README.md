@@ -4,7 +4,7 @@ E-Procurement System to meet the needs of automation in the internal procurement
 1.  The application has been developed using microservice approach.  
 2.  We use git monorepo where all microservices are the modules in a single respository.
 3.  Each microservice product-service and review-service can be built and run independently using Maven.
-4.  Each microservice can build, test, run, dockerize, deploy & run independently using Docker, Travis and Kubernetes. It is however maintained as a mono-repo.
+4.  Each microservice can build, test, run, dockerize, deploy & run independently using Docker, Travis and Kubernetes.
 
 ## Tools & Techologies
 -  Spring Boot 2.6.6
