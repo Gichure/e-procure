@@ -29,7 +29,7 @@ E-Procurement System to meet the needs of automation in the internal procurement
 1.  [configurations-service](configurations-service/README.md)
 2.  [discovery-service](discovery-service/README.md)
 3.  [gateway-service](gateway-service/README.md)
-4.  5.  [setups-service](setups-service/README.md)
+4.  [setups-service](setups-service/README.md)
 6.  [workflow-service](workflow-service/README.md)
 7.  [notifications-service](notifications-service/README.md)
 8.  [inventory-service](inventory-service/README.md)
