@@ -7,13 +7,16 @@ E-Procurement System to meet the needs of automation in the internal procurement
 4.  Each microservice can build, test, run, dockerize, deploy & run independently using Docker, Travis and Kubernetes.
 
 ## Tools & Techologies
--  Spring Boot 2.6.6
+-  Spring Boot
 -  Microservices Architecture
--  Spring Cloud Gateway
+-  Spring Cloud
 -  MySQL
 -  Activiti for BPMN
 -  Mockito for Testing
 -  Docker
+-  Flyway
+-  Apache Kafka
+-  Keycloack
 
 ## Modules
 1.  Settings, Parameters and General Setups
