@@ -36,6 +36,8 @@ E-Procurement System to meet the needs of automation in the internal procurement
 8.  [orders-service](orders-service/README.md)
 9.  [invoices-service](invoices-service/README.md)
 10. [payments-service](payments-service/README.md)
+11. [authentication-service](authentication-service/README.md)
+12. [frontend-service](ui-service/README.md)
 
 ## Starting Up
 
