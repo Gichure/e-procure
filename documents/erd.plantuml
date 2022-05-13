@@ -33,12 +33,29 @@ entity          Country
 * date_created: date
   date_updated: date
 }
+
 entity          Currency
 {
 * id: number <<generated>>
 --
 * name: string
 * code: string
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          ExchangeRate
+{
+* id: number <<generated>>
+--
+* effective_from_date: datetime
+* effective_to_date: datetime
+* base_crrency_id: number <<FK>>
+* target_currency_id: number <<FK>>
+* company_id: number <<FK>>
+* rate: decimal
 * created_by_id: number <<FK>>
   updated_by_id: number <<FK>>
 * date_created: date
