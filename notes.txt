@@ -11,6 +11,7 @@ https://www.sivalabs.in/microservices-part-6-distributed-tracing-with-spring-clo
 Authentication Notes
 https://dev.to/prafful/spring-boot-rest-api-authentication-best-practices-using-jwt-2022-3j2d
 https://github.com/prafful98/rest-api-authentication-tutorial
+https://betterjavacode.com/programming/spring-boot-application-keycloak
 
 Frontend Service
 https://medium.com/xebia-engineering/a-minimalistic-guide-to-building-and-deploying-monolithic-spring-boot-react-applications-39440035b27
@@ -28,6 +29,9 @@ Saga
 https://blog.bitsrc.io/how-to-use-saga-pattern-in-microservices-9eaadde79748
 https://www.vinsguru.com/orchestration-saga-pattern-with-spring-boot/
 https://vinsguru.medium.com/choreography-saga-pattern-with-spring-boot-microservice-design-patterns-fb35a1802bee
+
+Apache Kafka
+https://reflectoring.io/reactive-architecture-with-spring-boot/
 
 Common
 https://reflectoring.io/spring-boot-exception-handling/
