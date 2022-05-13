@@ -1,0 +1,61 @@
+@startuml
+!pragma useVerticalIf on
+start
+:Login;
+:Access Home/Dashboard;
+:Access Assets Register;
+:Search for Item;
+if (Item Exist?) then (Y)
+  :Request Allocation;
+  if (Meets Criteria?) then (Y)
+    :Create Allocation;
+    :Approve Allocation;
+    :Update Asset Register;
+  else (N)
+   :Reject Allocation;
+  endif
+  :Notify User;
+else (N)
+  :Place Request;
+  if (Valid?) then (Y)
+    : Certify Request;
+    : Approve Request;
+    : Create Order;
+   if (Valid?) then (Y)
+      :Create Bid;
+      :Notify Suppliers;
+      :Place Bid;
+      if (Valid?) then (Y)
+        :Approve Bid;
+        :Create Order;
+        :Approve Order; 
+        :Supply Order;
+        if (OK?) then (Y)
+          : Receive Items;
+          : Update Asset Register;
+          : Notify User; 
+          : Create Invoice;          
+        else (N)
+          :Reject Item;
+        endif
+      else (N)
+      endif
+      :Notify Supplier/Bidder;
+      if (Order Complete?) then (Y)
+      :Certify Invoice;
+      :Approve Invoice;  
+      :Create Payment;   
+      :Notify Supplier; 
+      :Upload Receipt;  
+      endif
+   else (N)
+      :Reject Order;
+      :Notify User;
+   endif
+else (N)
+  :Reject Request;
+endif
+:Notify User;
+endif
+stop
+@enduml
