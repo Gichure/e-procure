@@ -1,0 +1,52 @@
+@startuml
+autonumber
+user -> "authentication-service": Authentication Request
+alt successful
+    == Initialization ==
+    user <-- "authentication-service": Authentication Accepted Response
+    user -> "inventory-service": Get Assets(company_id) Request
+    user <-- "inventory-service" : Get Assets Response
+    "user"-> "user": Search Asset  
+    alt Asset Found
+      user -> "inventory-service": Allocation(asset_id) Request
+      "inventory-service"-> "inventory-service": Validate Request
+      alt Valid Requisition
+        "inventory-service"-> "inventory-service": Allocate Asset
+        "inventory-service"-> "notifcation-service": Send notification
+        "notifcation-service"-> "inventory-service": Send notification response
+        "notifcation-service"--> user: Notification
+        "inventory-service"-> user: Allocation Request Accepted
+      else Invalid Requisition
+        "inventory-service"-> "notifcation-service": Send notification
+        "notifcation-service"--> user: Notification
+        "notifcation-service"-> "inventory-service": Send notification response
+        "inventory-service"-> user: Allocation Request Declined
+      end
+    else Asset Not Found
+      "inventory-service"-> "notifcation-service": Send notification
+      "notifcation-service"--> user: Notification
+      "notifcation-service"-> "inventory-service": Send notification response
+      "inventory-service"-> user: Asset Not Found Response
+      user -> "order-service": Purchase Request
+      "order-service" -> "order-service": Validate Purchase Request
+      "order-service" -> "user": Purchase Request Response
+    end
+== Approval ==
+user -> "order-service": Get Purchase Requests
+"order-service"-> user: Purchase Requests Response
+user -> "order-service": Certify Purchase Requests
+alt Maker Checker Enabled
+  "order-service"-> user: Purchase Requests Response
+else Maker Checker Disabled
+
+end
+
+
+== Receiving ==
+== Payment ==
+else failure
+    user <- "authentication-service" : Authentication Failed Response
+end
+
+
+@enduml
