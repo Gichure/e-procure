@@ -20,21 +20,20 @@ else (N)
   if (Valid?) then (Y)
     : Certify Request;
     : Approve Request;
-    : Create Order;
+    : Autocreate Order;
    if (Valid?) then (Y)
-      :Create Bid;
+      :Certify Order;
+      :Approve Order;
+      :Autocreate Bid;
       :Notify Suppliers;
       :Place Bid;
       if (Valid?) then (Y)
         :Approve Bid;
-        :Create Order;
-        :Approve Order; 
         :Supply Order;
         if (OK?) then (Y)
           : Receive Items;
           : Update Asset Register;
-          : Notify User; 
-          : Create Invoice;          
+          : Notify User;           
         else (N)
           :Reject Item;
         endif
@@ -42,10 +41,12 @@ else (N)
       endif
       :Notify Supplier/Bidder;
       if (Order Complete?) then (Y)
+      :Create Invoice;
       :Certify Invoice;
       :Approve Invoice;  
       :Create Payment;   
-      :Notify Supplier; 
+      :Notify Supplier;
+      :Supplier Send Receipt;   
       :Upload Receipt;  
       endif
    else (N)
@@ -54,8 +55,8 @@ else (N)
    endif
 else (N)
   :Reject Request;
+  :Notify User;
 endif
-:Notify User;
 endif
 stop
 @enduml
