@@ -1,0 +1,635 @@
+@startuml
+
+entity          Address
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* email
+* mobile_phone_number
+* country_id: number <<FK>>
+  zip_code
+  city
+  postal_address
+  physical_address
+  road
+  building
+  description
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+* contact_person
+}
+
+entity          Country
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+entity          Currency
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          CompanyGroup
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* address_id: number <<FK>>
+  tax_identification_number: string
+  vat_number: string
+* country_id: number <<FK>>
+* currency_id: number <<FK>>
+* status: OpenStatus
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Company
+{
+* id: number <<generated>>
+--
+* group_id: number <<FK>>
+* name: string
+* code: string
+* uuid: string <<generated>>
+* address_id: number <<FK>>
+  tax_identification_number: string
+  vat_number: string
+* status: OpenStatus
+* country_id: number <<FK>>
+* currency_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Department
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Designation
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* department_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Employee
+{
+* id: number <<generated>>
+--
+* person_id: number <<FK>>
+* employee_no: string
+* uuid: string <<generated>>
+* designation_id: number <<FK>>
+* address_id: number <<FK>>
+* employement_status: EmployementStatus
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          User
+{
+* id: number <<generated>>
+--
+* username: string
+* passsword: string
+* uuid: string <<generated>>
+* employee_id: number <<FK>>
+* company_id: number <<FK>>
+* address_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Person
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* firstname: string
+* lastname: string
+* dob: date
+* gender: Gender
+* group_id: number <<FK>>
+* company_id: number <<FK>>
+* address_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          ProductCategory
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Product
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* name: string
+* code: string
+* uom: UnitOfMeasure
+  description: string
+* price: decimal
+* supplier_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Supplier
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* address_id: number <<FK>>
+  tax_identification_number: string
+  vat_number: string
+* status: SupplierStatus
+* company_id: number <<FK>>
+* country_id: number <<FK>>
+* currency_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Warehouse
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+* name: string
+* code: string
+* status: OpenStatus
+  location: string
+  latitude: decimal
+  longitude: decimal
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+
+entity          Asset
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+* product_id: number <<FK>>
+* units: decimal
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          InventoryLog
+{
+* id: number <<generated>>
+--
+* company_id: number <<FK>>
+* product_id: number <<FK>>
+* warehouse_id: number <<FK>>
+* type: InventoryLogType
+* units: decimal
+* requested_by_id: number <<FK>>
+* issued_by_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          Allocation
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* employee_id: number <<FK>>
+* product_id: number <<FK>>
+* requested_units: decimal
+* allocated_units: decimal
+* status: AllocationStatus
+* status_date: date
+* status_remarks: string
+* prepared_by_id: number <<FK>>
+  certified_by_id: number <<FK>>
+  approved_by_id: number <<FK>>
+* date_requested: date
+  date_certified: date
+  date_approved: date
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          PurchaseRequest
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+* department_id: number <<FK>>
+  document_path: string
+* prepared_by_id: number <<FK>>
+  certified_by_id: number <<FK>>
+  approved_by_id: number <<FK>>
+* date_requested: date
+* date_certified: date
+* date_approved: date
+* items: List<PurchaseRequestItem>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          PurchaseRequestItem
+{
+* id: number <<generated>>
+--
+* product_id: number <<FK>>
+* requested_units: decimal
+* approved_units: decimal
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          PurchaseOrder
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+* supplier_id: number <<FK>>
+* department_id: number <<FK>>
+* request_id: number <<FK>>
+* status: OrderStatus
+* status_date: date
+* status_remarks: string
+* amount: decimal
+* paid_amount: decimal
+  document_path: string
+* prepared_by_id: number <<FK>>
+  certified_by_id: number <<FK>>
+  approved_by_id: number <<FK>>
+* date_requested: date
+* date_certified: date
+* date_approved: date
+* items: List<PurchaseOrderItem>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity          PurchaseOrderItem
+{
+* id: number <<generated>>
+--
+* product_id: number <<FK>>
+* requested_units: decimal
+* delivered_units: decimal
+* amount: decimal
+* paid_amount: decimal
+* remarks
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity Bid{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* order_item_id: number <<FK>>
+* supplier_id: number <<FK>>
+* bid_amount: decimal
+* status: BidSatus
+* status_date: date
+* status_remarks: string
+* order_amount: number <<FK>>
+* company_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+
+entity          Invoice
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* invoice_no: string
+* company_id: number <<FK>>
+* supplier_id: number <<FK>>
+* order_id: number <<FK>>
+* status: InvoiceStatus
+* status_date: date
+* status_remarks: string
+* base_amount: decimal
+* forex_amount: decimal
+* invoice_date: date
+  document_path: string
+* description: string
+* currency_id: number <<FK>>
+* prepared_by_id: number <<FK>>
+  certified_by_id: number <<FK>>
+  approved_by_id: number <<FK>>
+* date_requested: date
+* date_certified: date
+* date_approved: date
+* items: List<InvoiceLine>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity   InvoiceLine
+{
+* id: number <<generated>>
+--
+* order_item_id: number <<FK>>
+* base_amount: decimal
+* forex_amount: decimal
+* description: string
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+
+entity  Payment
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+* invoice_id: number <<FK>>
+* payment_date: date
+* payment_channel: PaymentChannel
+* payment_ref_number: string
+* status: PaymentStatus
+* status_date: date
+* status_remarks: string
+* base_amount: decimal
+* forex_amount: decimal
+* description: string
+* currency_id: number <<FK>>
+* prepared_by_id: number <<FK>>
+  certified_by_id: number <<FK>>
+  approved_by_id: number <<FK>>
+* date_requested: date
+  date_certified: date
+  date_approved: date
+* items: List<InvoiceLine>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+entity Receipt{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* payment_id: number <<FK>>
+* company_id: number <<FK>>
+* amount: decimal<<FK>>
+* receipt_date: date
+* received_from: string
+* receipt_ref_number: date
+* remarks: string
+* document_path: string
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
+
+CompanyGroup||--o{ Company
+Company ||--o{ Department
+Department||--o{ Designation
+Designation||--o{ Employee
+Employee||--|| User
+Employee||--|| Person
+
+Company ||--o{ ProductCategory
+ProductCategory ||--o{ Product
+Company ||--o{ Warehouse
+
+
+Company||--||Asset
+Asset||--o{ InventoryLog
+Asset||--o{ Allocation
+
+Company||--o{ PurchaseRequest
+PurchaseRequest ||--o{ PurchaseRequestItem
+
+
+Company||--o{Supplier
+
+Company||--o{ PurchaseOrder
+PurchaseOrder ||--o{PurchaseOrderItem
+
+
+Company||--o{Bid
+
+Company ||--o{ Invoice
+Invoice||--o{ InvoiceLine
+
+Company||--o{Payment
+
+Company||--o{Receipt
+
+enum AllocationStatus{
+NEW
+CERTIFIED
+APPROVED
+IN_USE
+LOST
+RETURNED
+DAMAGED
+
+}
+enum InvoiceStatus{
+NEW
+CERTIFIED
+APPROVED
+DISPUTED
+PAID
+}
+
+enum PaymentStatus{
+NEW
+CERTIFIED
+APPROVED
+REVERSED
+PAID
+}
+
+enum PaymentChannel{
+CASH
+CARD
+MOBILE_MONEY
+CHEQUE
+RTGS
+EFT
+OTHERS
+}
+
+enum    OrderSatus{
+NEW
+CERTIFIED
+APPROVED
+SENT
+COMMITTED
+PARTIAL_DELIVERED
+FULLY_DELIVERED
+DISPUTED
+REJECTED
+}
+
+enum    BidSatus{
+NEW
+CERTIFIED
+APPROVED
+CLOSED
+DISPUTED
+REJECTED
+}
+
+enum            UnitOfMeasure
+{
+METER
+CENTIMETER
+KILOGRAM
+MILLIGRAM
+COUNT
+UNKNOWN
+}
+
+enum            SupplierStatus
+{
+ACTIVE
+INACTIVE
+BLACKLISTED
+}
+
+enum            Status
+{
+ACTIVE
+INACTIVE
+UNKNOWN
+}
+
+enum            OpenStatus
+{
+OPEN
+CLOSED
+UNKNOWN
+}
+
+enum            AddressType
+{
+ORDINARY
+EMERGENCY
+}
+
+enum            Gender
+{
+MALE
+FEMALE
+NOT_DISCLOSED
+UNKNOWN
+}
+
+enum            EmployementStatus{
+ONBOARDING
+PROBATION
+ACTIVE
+ON_LEAVE
+ON_NOTICE_OF_EXIT
+SUSPENDED
+RETIRED
+EXITED
+}
+
+enum InventoryLogType{
+IN
+OUT
+}
+
+
+@enduml
