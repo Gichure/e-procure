@@ -1,0 +1,74 @@
+@startuml
+left to right direction
+
+package Public{
+  actor Guest as g
+  actor Supplier as s
+  
+}
+package Staff{
+  actor Employee as e
+  actor HOD as hod
+  actor Accountant as acc
+  actor "HOD Accounts" as hod_acc
+  actor "HOD Procurement" as hod_pro
+  actor Admin as a
+  
+}
+
+package Company{
+  usecase "Add Company" as AC
+  usecase "Add Employee" as AE
+  usecase "Place Request" as PR
+  usecase "Certify Request" as CR
+  usecase "Approve Request" as AR
+  usecase "Certify Order" as CO
+  usecase "Approve Order" as AO
+  usecase "Receive Order" as RO
+  usecase "View Bid" as VB
+  usecase "Place Bid" as PB
+  usecase "Approve Bid" as AB
+  usecase "Add Supplier" as AS
+  usecase "Supply Goods" as SG
+  usecase "Send Invoice" as SI
+  usecase "Approve Invoice" as AI
+  usecase "Create Receipt" as CRR
+  usecase "Allocate Asset" as AA
+  usecase "Return Asset" as RA
+  usecase "Create Invoice" as CI
+  usecase "Create Payment" as CP
+  usecase "Approve Payment" as AP
+}
+
+a --> AS
+a --> AC
+a --> AE
+
+g --> VB
+
+s --> PB
+s --> SG
+s --> SI
+s --> VB
+
+e --> PR
+e --> RO
+e --> AA
+e --> RA
+
+hod --> CR
+hod --> AR
+
+hod_pro --> AO
+hod_pro --> CO
+
+
+acc --> CRR
+acc --> CI
+acc --> CP
+
+hod_acc --> AB
+hod_acc --> AI
+hod_acc --> AP
+
+@enduml
