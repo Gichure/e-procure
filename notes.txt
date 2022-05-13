@@ -16,4 +16,22 @@ Frontend Service
 https://medium.com/xebia-engineering/a-minimalistic-guide-to-building-and-deploying-monolithic-spring-boot-react-applications-39440035b27
 
 Sample
+https://reflectoring.io/reactive-architecture-with-spring-boot/
 https://github.com/sivaprasadreddy/spring-boot-microservices-series
+https://github.com/yogsma/betterjavacode
+
+Elasticsearch
+https://mkyong.com/spring-boot/spring-boot-spring-data-elasticsearch-example/
+https://betterjavacode.com/programming/elasticsearch-spring-boot
+
+Saga
+https://blog.bitsrc.io/how-to-use-saga-pattern-in-microservices-9eaadde79748
+https://www.vinsguru.com/orchestration-saga-pattern-with-spring-boot/
+https://vinsguru.medium.com/choreography-saga-pattern-with-spring-boot-microservice-design-patterns-fb35a1802bee
+
+Common
+https://reflectoring.io/spring-boot-exception-handling/
+https://betterjavacode.com/spring-boot/conversion-of-entity-to-dto-using-modelmapper
+
+ERD
+http://www.plantuml.com/plantuml/uml/bP71JkCm48RlVegefzrzXXKgAWXnG211nJ4Qx4bhARQZcJ4eGhmxQUCwGIOg-53t_sVy_HDxpG8aqRLAeHShVPNN9hWEV7z38NRgNVshh1b-F3WSDXtCOOlnQ88nXCpr83wMEBz158mhx8343VOPZ1x3Han9ORlp83RuCnYJyxudNRkk3JtYX6aiiIHM2_alfiRQXpazpr7_uEEtZ3G5nK4bU0VC_1R8P7JEMq0zK31HomO4Tu7ElSdbEDO0Mk2SpfSDpq2u3v5nkUNMlmxMR8fotZp1l2EwQhQstifzSuV0aR2eFWf8v6GNsAU-GwNWXOL0owbuqbD1jy1SLQklnag1zq6EpvXEPgsq9TtYb3XgzUVlP4rspVj0KZU1d4fPUHsrCXPSy2QxIQl_5zcQ-pDWSQMZBgxae9NrWjI0ncHchTReJNJj9m00
