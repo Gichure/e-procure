@@ -1,0 +1,207 @@
+@startuml
+package "com.pgichure.eprocure.setups" #DDDDDD {
+
+  package com.pgichure.eprocure.setups.models{
+   class Country
+{
+Long id
+--
+String name
+String code
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class Currency
+{
+Long id
+--
+String name
+String code
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class ExchangeRate
+{
+* id: number <<generated>>
+--
+* effective_from_date: datetime
+* effective_to_date: datetime
+* base_crrency_id: number <<FK>>
+* target_currency_id: number <<FK>>
+* company_id: number <<FK>>
+* rate: decimal
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class CompanyGroup
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* address_id: number <<FK>>
+  tax_identification_number: string
+  vat_number: string
+* country_id: number <<FK>>
+* currency_id: number <<FK>>
+* status: OpenStatus
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class Company
+{
+* id: number <<generated>>
+--
+* group_id: number <<FK>>
+* name: string
+* code: string
+* uuid: string <<generated>>
+* address_id: number <<FK>>
+  tax_identification_number: string
+  vat_number: string
+* status: OpenStatus
+* country_id: number <<FK>>
+* currency_id: number <<FK>>
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class Department
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* company_id: number <<FK>>
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class Designation
+{
+* id: number <<generated>>
+--
+* name: string
+* code: string
+* uuid: string <<generated>>
+* department_id: number <<FK>>
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class Employee
+{
+Long id
+--
+Person person
+String employee_no
+String uuid
+Designation designation
+Address address
+EmployementStatus employement_status 
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class User
+{
+* id: number <<generated>>
+--
+* username: string
+* passsword: string
+* uuid: string <<generated>>
+* employee_id: number <<FK>>
+* company_id: number <<FK>>
+* address_id: number <<FK>>
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class Person
+{
+* id: number <<generated>>
+--
+* uuid: string <<generated>>
+* firstname: string
+* lastname: string
+* dob: date
+* gender: Gender
+* group_id: number <<FK>>
+* company_id: number <<FK>>
+* address_id: number <<FK>>
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+  }
+
+   package com.pgichure.eprocure.setups.enums{
+
+enum OpenStatus
+{
+OPEN
+CLOSED
+UNKNOWN
+}
+
+enum AddressType
+{
+ORDINARY
+EMERGENCY
+}
+
+enum  Gender
+{
+MALE
+FEMALE
+NOT_DISCLOSED
+UNKNOWN
+}
+
+enum  EmployementStatus{
+ONBOARDING
+PROBATION
+ACTIVE
+ON_LEAVE
+ON_NOTICE_OF_EXIT
+SUSPENDED
+RETIRED
+EXITED
+}
+
+  }
+
+  package com.pgichure.eprocure.setups.dtos{
+  
+  }
+}
+com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.dtos
+com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.enums
+com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.models
+
+@enduml
