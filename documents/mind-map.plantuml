@@ -1,0 +1,44 @@
+@startmindmap
+*[#Orange] E-PROCURE
+ *[#lightgreen] gateway-service
+  *[#FFBBCC] Routing
+  *[#lightblue] Rate Limiting
+ *[#lightgreen] discovery-service
+  *[#FFBBCC] Service Registration
+  *[#lightblue] Service Discovery
+ *[#lightgreen] configurations-service
+  *[#lightblue] Configurations Management
+ *[#lightgreen] authentication-service
+  *[#FFBBCC] User Registration
+  *[#lightblue] Authentication
+  *[#FFBBCC] Roles & Permissions
+  *[#lightblue] Authorization
+ *[#lightgreen] workflow-service
+  *[#FFBBCC] SLA Management
+   *[#FFBBCC] Process Definition
+   *[#lightblue] Ticketing
+   *[#FFBBCC] Escalation
+ *[#lightgreen] notifications-service
+  *[#FFBBCC] SMS
+  *[#lightblue] Email
+  *[#FFBBCC] Push
+ *[#lightgreen] setups-service
+  *[#FFBBCC] Company Groups
+  *[#lightblue] Companies
+  *[#FFBBCC] Departments
+  *[#lightblue] Designations
+  *[#FFBBCC] Addess
+ *[#lightgreen] employees-service
+  *[#FFBBCC] Employees
+  *[#lightblue] Person
+ *[#lightgreen] orders-service
+  *[#FFBBCC] Suppliers
+  *[#lightblue] Purchase Requests
+  *[#FFBBCC] Purchase Orders
+ *[#lightgreen] inventory-service
+  *[#FFBBCC] Assets
+ *[#lightgreen] payments-service
+  *[#FFBBCC] Invoices
+  *[#lightblue] Payments
+  *[#FFBBCC] Receipts
+@endmindmap
