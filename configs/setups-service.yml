@@ -19,6 +19,15 @@ management:
           - env
           - health
           - info
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 50
+      minimum-idle: 5
 logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  level:
+    com:
+      zaxxer:
+        hikari: DEBUG
