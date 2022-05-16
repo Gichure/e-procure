@@ -1,0 +1,154 @@
+@startuml
+package "com.pgichure.eprocure.employees" #DDDDDD {
+
+  package com.pgichure.eprocure.employees.models{
+
+class Employee
+{
+Long id
+--
+Person person
+String employee_no
+String uuid
+Designation designation
+Address address
+EmployementStatus employement_status 
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+
+class Person
+{
+Long id
+--
+String uuid
+String firstname
+Stirng lastname
+Date dob
+Gender gender
+Long group_id
+Long company_id
+Long address_id
+User createdBy
+User updatedBy
+Date date_created
+Date date_updated
+}
+  }
+
+package com.pgichure.eprocure.employees.enums{
+
+enum  Gender
+{
+MALE
+FEMALE
+NOT_DISCLOSED
+UNKNOWN
+}
+
+enum  EmployementStatus{
+ONBOARDING
+PROBATION
+ACTIVE
+ON_LEAVE
+ON_NOTICE_OF_EXIT
+SUSPENDED
+RETIRED
+EXITED
+}
+
+  }
+
+package com.pgichure.eprocure.employees.dtos{
+
+class EmployeeDto
+{
+Long id
+--
+Long person_id
+String employee_no
+String uuid
+Long designation_id
+Long address_id
+EmployementStatus employement_status 
+Long created_by_id
+Long  updated_by_id
+Date date_created
+Date date_updated
+PersonDto person
+List<AddressDto> addresses
+}
+
+class PersonDto
+{
+Long id
+--
+String uuid
+String firstname
+Stirng lastname
+Date dob
+Gender gender
+Long group_id
+Long company_id
+Long address_id
+Long createdBy
+Long updatedBy
+Date date_created
+Date date_updated
+List<EmployeeDto> employees
+}
+
+class CompanyDto
+{
+Long id
+--
+Long group_id
+String name
+String code
+String uuid
+}
+
+class DepartmentDto
+{
+Long id
+--
+String name
+String code
+String uuid
+}
+
+class DesignationDto
+{
+Long id
+--
+String name
+String code
+String uuid
+}
+
+class AddressDto
+{
+Long id
+--
+String email
+String mobile_phone_number
+Long country_id
+String zip_code
+String city
+String postal_address
+String physical_address
+String road
+String building
+String description
+String contact_person
+}
+
+  }
+}
+com.pgichure.eprocure.employees +-- com.pgichure.eprocure.employees.dtos
+com.pgichure.eprocure.employees +-- com.pgichure.eprocure.employees.enums
+com.pgichure.eprocure.employees +-- com.pgichure.eprocure.employees.models
+
+@enduml
