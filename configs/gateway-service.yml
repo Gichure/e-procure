@@ -51,6 +51,9 @@ eureka:
     healthcheck:
       enabled: true
 management:
+  endpoint:
+      gateway:
+         enabled: true
   endpoints:
     web:
       exposure:
@@ -59,6 +62,7 @@ management:
           - env
           - health
           - info  
+          - gateway
 logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
