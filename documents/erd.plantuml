@@ -20,6 +20,7 @@ entity          Address
 * date_created: date
   date_updated: date
 * contact_person
+* address_type: AddressType
 }
 
 entity          Country
