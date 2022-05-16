@@ -1,8 +1,8 @@
 @startuml
 package "com.pgichure.eprocure.setups" #DDDDDD {
 
-  package com.pgichure.eprocure.setups.models{
-   class Country
+package com.pgichure.eprocure.setups.models{
+class Country
 {
 Long id
 --
@@ -28,14 +28,14 @@ Date date_updated
 
 class ExchangeRate
 {
-* id: number <<generated>>
+Long id
 --
-* effective_from_date: datetime
-* effective_to_date: datetime
-* base_crrency_id: number <<FK>>
-* target_currency_id: number <<FK>>
-* company_id: number <<FK>>
-* rate: decimal
+DateTime effective_from_date
+DateTime effective_to_date
+Currency baseCurrency
+Currency targetCurrency
+Company company
+BigDecimal rate
 User createdBy
 User updatedBy
 Date date_created
@@ -44,17 +44,17 @@ Date date_updated
 
 class CompanyGroup
 {
-* id: number <<generated>>
+Long id
 --
-* name: string
-* code: string
-* uuid: string <<generated>>
-* address_id: number <<FK>>
-  tax_identification_number: string
-  vat_number: string
-* country_id: number <<FK>>
-* currency_id: number <<FK>>
-* status: OpenStatus
+String name
+String code
+String uuid
+Address addres
+String tax_identification_number
+String vat_number
+Country country;
+Currency currency
+OpenStatus status
 User createdBy
 User updatedBy
 Date date_created
@@ -63,18 +63,18 @@ Date date_updated
 
 class Company
 {
-* id: number <<generated>>
+Long id
 --
-* group_id: number <<FK>>
-* name: string
-* code: string
-* uuid: string <<generated>>
-* address_id: number <<FK>>
-  tax_identification_number: string
-  vat_number: string
-* status: OpenStatus
-* country_id: number <<FK>>
-* currency_id: number <<FK>>
+CompanyGroup group
+String name
+String code
+String uuid
+Address address
+String tax_identification_number
+String vat_number
+OpenStatus status
+Country country
+Currency currency
 User createdBy
 User updatedBy
 Date date_created
@@ -83,12 +83,12 @@ Date date_updated
 
 class Department
 {
-* id: number <<generated>>
+Long id
 --
-* name: string
-* code: string
-* uuid: string <<generated>>
-* company_id: number <<FK>>
+String name
+String code
+String uuid
+Company company
 User createdBy
 User updatedBy
 Date date_created
@@ -97,70 +97,44 @@ Date date_updated
 
 class Designation
 {
-* id: number <<generated>>
+Long id
 --
-* name: string
-* code: string
-* uuid: string <<generated>>
-* department_id: number <<FK>>
+String name
+String code
+String uuid
+Department department
 User createdBy
 User updatedBy
 Date date_created
 Date date_updated
 }
 
-class Employee
+class Address
 {
 Long id
 --
-Person person
-String employee_no
-String uuid
-Designation designation
-Address address
-EmployementStatus employement_status 
+String email
+String mobile_phone_number
+Country country
+String zip_code
+String city
+String postal_address
+String physical_address
+String road
+String building
+String description
 User createdBy
 User updatedBy
 Date date_created
 Date date_updated
+String contact_person
+AddressType address_type
 }
 
-class User
-{
-* id: number <<generated>>
---
-* username: string
-* passsword: string
-* uuid: string <<generated>>
-* employee_id: number <<FK>>
-* company_id: number <<FK>>
-* address_id: number <<FK>>
-User createdBy
-User updatedBy
-Date date_created
-Date date_updated
-}
 
-class Person
-{
-* id: number <<generated>>
---
-* uuid: string <<generated>>
-* firstname: string
-* lastname: string
-* dob: date
-* gender: Gender
-* group_id: number <<FK>>
-* company_id: number <<FK>>
-* address_id: number <<FK>>
-User createdBy
-User updatedBy
-Date date_created
-Date date_updated
-}
   }
 
-   package com.pgichure.eprocure.setups.enums{
+package com.pgichure.eprocure.setups.enums{
 
 enum OpenStatus
 {
@@ -175,33 +149,246 @@ ORDINARY
 EMERGENCY
 }
 
-enum  Gender
+}
+
+package com.pgichure.eprocure.setups.dtos{
+  class CountryDto
 {
-MALE
-FEMALE
-NOT_DISCLOSED
-UNKNOWN
+Long id
+--
+String name
+String code
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
 }
 
-enum  EmployementStatus{
-ONBOARDING
-PROBATION
-ACTIVE
-ON_LEAVE
-ON_NOTICE_OF_EXIT
-SUSPENDED
-RETIRED
-EXITED
+class CurrencyDto
+{
+Long id
+--
+String name
+String code
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
+}
+
+class ExchangeRateDto
+{
+Long id
+--
+DateTime effective_from_date
+DateTime effective_to_date
+Currency baseCurrency
+Currency targetCurrency
+Company company
+BigDecimal rate
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
+}
+
+class CompanyGroupDto
+{
+Long id
+--
+String name
+String code
+String uuid
+Long address_id
+String tax_identification_number
+String vat_number
+Long country_id
+Long currency_id
+OpenStatus status
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
+}
+
+class CompanyDto
+{
+Long id
+--
+Long group_id
+String name
+String code
+String uuid
+Long address_id
+String tax_identification_number
+String vat_number
+OpenStatus status
+Long country_id
+Long currency_id
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
+}
+
+class DepartmentDto
+{
+Long id
+--
+String name
+String code
+String uuid
+Long company_id
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
+}
+
+class DesignationDto
+{
+Long id
+--
+String name
+String code
+String uuid
+String department_id
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
+}
+
+class AddressDto
+{
+Long id
+--
+String email
+String mobile_phone_number
+Country country
+String zip_code
+String city
+String postal_address
+String physical_address
+String road
+String building
+String description
+Long created_by_id
+Long updated_by_id
+Date date_created
+Date date_updated
+String contact_person
+AddressType address_type
 }
 
   }
 
-  package com.pgichure.eprocure.setups.dtos{
-  
+ package com.pgichure.eprocure.setups.repositories{
+ interface CountryRepository{
   }
+interface CurrencyRepository{
+  }
+
+interface AddressRepository{
+  }
+interface ExchangeRateRepository{
+  }
+interface CompanyGroupRepository{
+  }
+
+interface CompanyRepository{
+  }
+
+interface DepartmentRepository{
+  }
+
+interface DesignationRepository{
+  }
+ }
+
+ package com.pgichure.eprocure.setups.services{
+interface CountryServiceI{
++save(CountryDto country)
++findById(Long countryId)
++update(Long countryId, CountryDto country)
++delete(Long countryId)
++List<CountryDto>()
+  }
+interface CurrencyServiceI{
++save(CurrencyDto currency)
++findById(Long currencyId)
++update(Long currencyId, CurrencyDto currency)
++delete(Long currencyId)
++List<CurrencyDto>()
+  }
+
+interface AddressServiceI{
+  }
+interface ExchangeRateServiceI{
+  }
+interface CompanyGroupServiceI{
+  }
+
+interface CompanyServiceI{
+  }
+
+interface DepartmentServiceI{
+  }
+
+interface DesignationServiceI{
+  }
+
+class CountryService{
+  }
+class CurrencyService{
+  }
+
+class AddressService{
+  }
+class ExchangeRateService{
+  }
+class CompanyGroupService{
+  }
+
+class CompanyService{
+  }
+
+class DepartmentService{
+  }
+
+class DesignationService{
+  }
+
+ }
+
+package com.pgichure.eprocure.setups.controllers{
+class CountryController{
+  }
+class CurrencyController{
+  }
+
+class AddressController{
+  }
+class ExchangeRateController{
+  }
+class CompanyGroupController{
+  }
+
+class CompanyController{
+  }
+
+class DepartmentController{
+  }
+
+class DesignationController{
+  }
+
+ }
 }
 com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.dtos
 com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.enums
 com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.models
-
+com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.repositories
+com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.services
+com.pgichure.eprocure.setups +-- com.pgichure.eprocure.setups.controllers
 @enduml
