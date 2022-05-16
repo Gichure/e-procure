@@ -1,1 +1,15 @@
-
+entity          User
+{
+* id: number <<generated>>
+--
+* username: string
+* passsword: string
+* uuid: string <<generated>>
+* employee_id: number <<FK>>
+* company_id: number <<FK>>
+* address_id: number <<FK>>
+* created_by_id: number <<FK>>
+  updated_by_id: number <<FK>>
+* date_created: date
+  date_updated: date
+}
