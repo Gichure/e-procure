@@ -28,6 +28,7 @@
 	  <module>discovery-service</module>
 	  <module>gateway-service</module>
 	  <module>setups-service</module>
+	  <module>employees-service</module>
 	  <module>workflow-service</module>
 	</modules>
 	<properties>
