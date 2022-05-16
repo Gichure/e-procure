@@ -1,5 +1,5 @@
 @startuml
-package "com.pgichure.eprocure.employees" #DDDDDD {
+package "employees-service" #DDDDDD {
 
   package com.pgichure.eprocure.employees.models{
 
@@ -147,8 +147,8 @@ String contact_person
 
   }
 }
-com.pgichure.eprocure.employees +-- com.pgichure.eprocure.employees.dtos
-com.pgichure.eprocure.employees +-- com.pgichure.eprocure.employees.enums
-com.pgichure.eprocure.employees +-- com.pgichure.eprocure.employees.models
+"employees-service" +-- com.pgichure.eprocure.employees.dtos
+"employees-service" +-- com.pgichure.eprocure.employees.enums
+"employees-service" +-- com.pgichure.eprocure.employees.models
 
 @enduml
