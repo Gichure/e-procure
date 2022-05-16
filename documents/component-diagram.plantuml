@@ -11,6 +11,8 @@ component "EPROCURE" {
    [discovery-service]<->[orders-service]
    [discovery-service]<->[inventory-service]
    [discovery-service]<->[payments-service]
+   [payments-service]<->[payments-database]
+   [setups-service]<->[setups-database]
 }
 
 @enduml
