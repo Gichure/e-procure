@@ -1,0 +1,16 @@
+@startuml
+skinparam BackgroundColor transparent
+skinparam componentStyle uml2
+component "EPROCURE" {
+   [discovery-service]
+   [configurations-service]<->[discovery-service]
+   [discovery-service]<->[authentication-service]
+   [discovery-service]<->[gateway-service]
+   [discovery-service]<->[setups-service]
+   [discovery-service]<->[employees-service]
+   [discovery-service]<->[orders-service]
+   [discovery-service]<->[inventory-service]
+   [discovery-service]<->[payments-service]
+}
+
+@enduml
