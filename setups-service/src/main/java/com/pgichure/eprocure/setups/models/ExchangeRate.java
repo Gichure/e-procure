@@ -40,22 +40,22 @@ public class ExchangeRate extends Auditable<String>{
 	private Long id;
 	
 	@Column(name = "effective_from_date", updatable = false, nullable = false)
-	private ZonedDateTime effective_from_date;
+	private ZonedDateTime effectiveFromDdate;
 	
 	@Column(name = "effective_to_date", nullable = true)
-	private ZonedDateTime effective_to_date;
+	private ZonedDateTime effectiveToDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "base_crrency_id", nullable = false)
-	private Currency base_crrency_id;
+	private Currency baseCurrency;
 	
 	@ManyToOne
 	@JoinColumn(name = "target_currency_id", nullable = false)
-	private Currency  target_currency_id;
+	private Currency  targetCurrency;
 	
 	@ManyToOne
 	@JoinColumn(name = "company_id", nullable = false)
-	private Company  company_id;
+	private Company  company;
 	
 	@Column(name = "rate", nullable = false)
 	private BigDecimal  rate;
