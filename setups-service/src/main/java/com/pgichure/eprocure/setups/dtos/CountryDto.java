@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pgichure.eprocure.setups.models;
+package com.pgichure.eprocure.setups.dtos;
 
 import com.pgichure.eprocure.setups.enums.OpenStatus;
 
