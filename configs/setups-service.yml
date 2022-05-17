@@ -24,6 +24,14 @@ management:
       connection-test-query: SELECT 1
       maximum-pool-size: 50
       minimum-idle: 5
+    url: jdbc:mysql://localhost:3306/setups_db?useSSL=false
+    username: dev
+    password: Dev123#@!
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        ddl-auto: update
 logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
