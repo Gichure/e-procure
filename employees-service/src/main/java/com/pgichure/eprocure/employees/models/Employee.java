@@ -33,7 +33,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "employees")
 @Entity
 public class Employee extends Auditable<String>{
-
+	
+	@Id
+	@Column(name = "id", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private Long id;
+	
 	@ManyToOne
 	@JoinColumn(name = "person_id", nullable = false)
 	private Person person;
