@@ -23,9 +23,6 @@ jobs:
       - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
-          name: CD
-          command: cd configurations-service
-      - run:
           name: Build
           command: mvn -B -DskipTests clean package
       - run:
