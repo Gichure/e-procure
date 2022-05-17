@@ -30,11 +30,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "product_categories")
+@Table(name = "assset_categories")
 @Entity
-public class ProductCategory extends Auditable<String>{
+public class AssetCategory extends Auditable<String>{
 
-  @Id
+        @Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
@@ -42,7 +42,7 @@ public class ProductCategory extends Auditable<String>{
 	@Column(name = "company_id", nullable = false)
 	private Long companyId;
   
-  @Column(name = "name", nullable = false)
+        @Column(name = "name", nullable = false)
 	private String name;
 	
 	@Column(name = "code", nullable = false)
