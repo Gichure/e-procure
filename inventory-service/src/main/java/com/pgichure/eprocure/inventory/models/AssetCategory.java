@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pgichure.eprocure.employees.models;
+package com.pgichure.eprocure.inventory.models;
 
 import java.time.ZonedDateTime;
 
@@ -30,41 +30,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employees")
+@Table(name = "assset_categories")
 @Entity
-public class Employee extends Auditable<String>{
-	
-	@Id
+public class AssetCategory extends Auditable<String>{
+
+        @Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "person_id", nullable = false)
-	private Person person;
-	
-	@ManyToOne
-	@JoinColumn(name = "supervisor_id")
-	private Employee supervisor;
-	
-	@Column(name = "employement_type", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private EmployementType employementType;
-	
-	@Column(name = "employement_date", nullable = false)
-	@Temporal(TemporalType.DATE)
-	private ZonedDateTime employementDate;
-	
-	@Column(name = "exit_date")
-	@Temporal(TemporalType.DATE)
-	private ZonedDateTime exitDate;
-	
-	@Column(name = "department_id", nullable = false)
-	private Long departmentId;
-	
-	@Column(name = "designation_id", nullable = false)
-	private Long designationId;
-	
+  
 	@Column(name = "company_id", nullable = false)
 	private Long companyId;
+  
+        @Column(name = "name", nullable = false)
+	private String name;
+	
+	@Column(name = "code", nullable = false)
+	private String code;
+    
 }
