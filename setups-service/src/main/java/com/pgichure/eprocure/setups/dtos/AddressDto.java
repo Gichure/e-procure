@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDto {
+public class AddressDto implements Serializable{
 
 	private Long id;
 	
