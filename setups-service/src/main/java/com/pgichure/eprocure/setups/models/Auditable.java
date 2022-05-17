@@ -29,7 +29,7 @@ import lombok.Data;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class Auditable<T> {
+public class Auditable<T> implements Serializable{
 
 	@CreatedBy
 	@Column(name = "created_by", updatable = false, nullable = false)
