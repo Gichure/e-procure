@@ -7,6 +7,8 @@ Docker Composer notes
 https://www.kindsonthegenius.com/introduction-to-docker-compose-with-spring-boot-example/
 https://www.sivalabs.in/microservices-part-2-configuration-management-spring-cloud-config-vault/
 https://www.sivalabs.in/microservices-part-6-distributed-tracing-with-spring-cloud-sleuth-and-zipkin/
+https://github.com/AlicanAkkus/microservice-docker
+https://morioh.com/p/3fe99c4391e4
 
 Authentication Notes
 https://dev.to/prafful/spring-boot-rest-api-authentication-best-practices-using-jwt-2022-3j2d
