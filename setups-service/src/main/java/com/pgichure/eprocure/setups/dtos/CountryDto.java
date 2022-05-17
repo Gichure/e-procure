@@ -3,8 +3,6 @@
  */
 package com.pgichure.eprocure.setups.dtos;
 
-import com.pgichure.eprocure.setups.enums.OpenStatus;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
