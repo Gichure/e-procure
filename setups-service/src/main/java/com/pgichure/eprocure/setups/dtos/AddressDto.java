@@ -38,7 +38,7 @@ public class AddressDto implements Serializable{
 	
 	private String postal_address;
 	
-  private String physical_address;
+  	private String physical_address;
 	
 	private String street;
 	
