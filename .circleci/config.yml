@@ -18,15 +18,16 @@ jobs:
       - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
+          name: CD
+          command: cd configurations-service
+      - run:
           name: Build
-          command: cd /configurations-service mvn -B -DskipTests clean package
-      # Then run your tests!
+          command: mvn -B -DskipTests clean package
       - run:
           name: Test
-          command: cd /configurations-service mvn test
-
+          command: mvn test
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+  Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
