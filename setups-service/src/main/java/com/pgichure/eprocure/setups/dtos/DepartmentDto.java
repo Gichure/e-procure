@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepartmentDto extends Auditable<String>{
+public class DepartmentDto{
 
 	private Long id;
   
