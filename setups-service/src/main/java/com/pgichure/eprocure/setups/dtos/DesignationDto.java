@@ -1,6 +1,8 @@
- * 
+ /* 
  */
 package com.pgichure.eprocure.setups.dtos;
+
+import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DesignationDto{
+public class DesignationDto implements Serializable{
 
 	private Long id;
   

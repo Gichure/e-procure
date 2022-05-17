@@ -3,6 +3,8 @@
  */
 package com.pgichure.eprocure.setups.services;
 
+import java.util.List;
+
 import com.pgichure.eprocure.setups.dtos.CompanyDto;
 
 /**
@@ -18,7 +20,7 @@ public interface CompanyServiceI{
   
     public CompanyDto update(Long id, CompanyDto companyDto);
   
-    public List<CompanyDto> findAll();
+    public List<CompanyDto> findAll(int page, int size, String sortDir, String sort);
   
     public CompanyDto delete(Long id);
   

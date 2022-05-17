@@ -3,6 +3,8 @@
  */
 package com.pgichure.eprocure.setups.dtos;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrencyDto{
+public class CurrencyDto implements Serializable{
 
 	private Long id;
 	

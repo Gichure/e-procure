@@ -3,6 +3,7 @@
  */
 package com.pgichure.eprocure.setups.dtos;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExchangeRate{
+public class ExchangeRateDto implements Serializable{
 
 	private Long id;
 	

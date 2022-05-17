@@ -3,6 +3,8 @@
  */
 package com.pgichure.eprocure.setups.services;
 
+import java.util.List;
+
 import com.pgichure.eprocure.setups.dtos.DesignationDto;
 
 /**
@@ -18,7 +20,7 @@ public interface DesignationServiceI{
   
     public DesignationDto update(Long id, DesignationDto designationDto);
   
-    public List<DesignationDto> findAll();
+    public List<DesignationDto> findAll(int page, int size, String sortDir, String sort);
   
     public DesignationDto delete(Long id);
   

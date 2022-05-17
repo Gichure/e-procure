@@ -3,10 +3,12 @@
  */
 package com.pgichure.eprocure.setups.services;
 
+import java.util.List;
+
 import com.pgichure.eprocure.setups.dtos.CountryDto;
 
 /**
- * The Company service interface
+ * The Country service interface
  * @author pgichure
  *
  */
@@ -18,7 +20,7 @@ public interface CountryServiceI{
   
     public CountryDto update(Long id, CountryDto countryDto);
   
-    public List<CountryDto> findAll();
+    public List<CountryDto> findAll(int page, int size, String sortDir, String sort);
   
     public CountryDto delete(Long id);
   

@@ -3,6 +3,8 @@
  */
 package com.pgichure.eprocure.setups.services;
 
+import java.util.List;
+
 import com.pgichure.eprocure.setups.dtos.DepartmentDto;
 
 /**
@@ -18,7 +20,7 @@ public interface DepartmentServiceI{
   
     public DepartmentDto update(Long id, DepartmentDto departmentDto);
   
-    public List<DepartmentDto> findAll();
+    public List<DepartmentDto> findAll(int page, int size, String sortDir, String sort);
   
     public DepartmentDto delete(Long id);
   
