@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CountryDto{
+public class CountryDto implements Serializable{
 
 	private Long id;
 	
