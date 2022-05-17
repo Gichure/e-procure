@@ -1,4 +1,7 @@
-# e-pro-cure
+[![CircleCI](https://circleci.com/gh/gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/gichure/e-procure/tree/main)
+
+
+# e-procure
 E-Procurement System to meet the needs of automation in the internal procurement process of a company.  
 ## Overview
 1.  The application has been developed using microservice approach.  
