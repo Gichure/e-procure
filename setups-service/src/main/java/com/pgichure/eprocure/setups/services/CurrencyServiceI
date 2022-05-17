@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+package com.pgichure.eprocure.setups.services;
+
+import com.pgichure.eprocure.setups.dtos.CurrencyDto;
+
+/**
+ *
+ * @author pgichure
+ *
+ */
+public interface CurrencyServiceI{
+  
+    public CurrencyDto save(CurrencyDto currencyDto);
+  
+    public CurrencyDto findById(Long id);
+  
+    public CurrencyDto update(Long id, CurrencyDto currencyDto);
+  
+    public List<CurrencyDto> findAll();
+  
+    public CurrencyDto delete(Long id);
+  
+}

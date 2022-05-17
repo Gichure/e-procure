@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompanyGroupDto{
+public class CompanyGroupDto implements Serializable{
 	
 	private Long id;
   

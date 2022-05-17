@@ -18,11 +18,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompanyDto{
+public class CompanyDto implements Serializable{
 
 	private Long id;
 	
-  private String name;
+  	private String name;
   
 	private String code;
 	
@@ -34,7 +34,7 @@ public class CompanyDto{
 	
 	private String vat_number;
 	
-  private CountryDto country;
+  	private CountryDto country;
 	
 	private CurrencyDto currency;
 	

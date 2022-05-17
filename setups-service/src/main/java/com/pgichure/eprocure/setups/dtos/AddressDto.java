@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDto {
+public class AddressDto implements Serializable{
 
 	private Long id;
 	
@@ -38,7 +38,7 @@ public class AddressDto {
 	
 	private String postal_address;
 	
-  private String physical_address;
+  	private String physical_address;
 	
 	private String street;
 	
