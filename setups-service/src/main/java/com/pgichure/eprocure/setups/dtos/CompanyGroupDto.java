@@ -3,7 +3,7 @@
  */
 package com.pgichure.eprocure.setups.dtos;
 
-import java.time.ZonedDateTime;
+import java.io.Serializable;
 
 import com.pgichure.eprocure.setups.enums.OpenStatus;
 

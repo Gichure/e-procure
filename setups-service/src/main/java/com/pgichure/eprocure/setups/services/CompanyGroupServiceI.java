@@ -3,10 +3,12 @@
  */
 package com.pgichure.eprocure.setups.services;
 
+import java.util.List;
+
 import com.pgichure.eprocure.setups.dtos.CompanyGroupDto;
 
 /**
- * The Company service interface
+ * The CompanyGroup service interface
  * @author pgichure
  *
  */
@@ -18,7 +20,7 @@ public interface CompanyGroupServiceI{
   
     public CompanyGroupDto update(Long id, CompanyGroupDto companyGroupDto);
   
-    public List<CompanyGroupDto> findAll();
+    public List<CompanyGroupDto> findAll(int page, int size, String sortDir, String sort);
   
     public CompanyGroupDto delete(Long id);
   

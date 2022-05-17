@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.pgichure.eprocure.setups.enums.AddressType;
-import com.pgichure.eprocure.setups.enums.OpenStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

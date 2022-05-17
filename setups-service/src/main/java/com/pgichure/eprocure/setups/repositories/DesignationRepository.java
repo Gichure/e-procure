@@ -3,8 +3,12 @@
  */
 package com.pgichure.eprocure.setups.repositories;
 
-import com.pgichure.eprocure.setups.models.Address;
-import org.springframework.data.repository.JpaRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.pgichure.eprocure.setups.models.Designation;
+
 /**
  * @author pgichure
  *

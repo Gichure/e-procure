@@ -3,6 +3,8 @@
  */
 package com.pgichure.eprocure.setups.dtos;
 
+import java.io.Serializable;
+
 import com.pgichure.eprocure.setups.enums.AddressType;
 
 import lombok.AllArgsConstructor;

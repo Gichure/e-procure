@@ -3,6 +3,7 @@
  */
 package com.pgichure.eprocure.setups.models;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
