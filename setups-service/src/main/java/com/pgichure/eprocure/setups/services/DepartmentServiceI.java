@@ -3,7 +3,7 @@
  */
 package com.pgichure.eprocure.setups.services;
 
-import com.pgichure.eprocure.setups.dtos.CompanyDto;
+import com.pgichure.eprocure.setups.dtos.DepartmentDto;
 
 /**
  * The Department service interface
