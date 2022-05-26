@@ -99,7 +99,7 @@ public class CompanyController {
 	})
 	public ResponseEntity<CompanyDto> update(
 			@ApiParam(value = "The ID of the company to delete", required = true) Long id,
-			@ApiParam(value = "Address details to be updated in database table", required = true)
+			@ApiParam(value = "Company details to be updated in database table", required = true)
 			@RequestBody CompanyDto company){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, company));
 	}
