@@ -5,6 +5,7 @@ package com.pgichure.eprocure.employees.dtos;
 
 import java.io.Serializable;
 
+import com.pgichure.eprocure.employees.enums.EmployementType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
