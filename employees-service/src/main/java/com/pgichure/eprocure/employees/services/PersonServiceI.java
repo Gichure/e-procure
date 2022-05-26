@@ -14,7 +14,7 @@ import com.pgichure.eprocure.employees.dtos.PersonDto;
  */
 public interface PersonServiceI{
   
-    public PersonDto save(PersonDto addressDto);
+    public PersonDto save(PersonDto personDto);
   
     public PersonDto findById(Long personId) throws Exception;
   
