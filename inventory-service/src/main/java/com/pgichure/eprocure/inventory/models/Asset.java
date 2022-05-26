@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employees")
+@Table(name = "assets")
 @Entity
 public class Asset extends Auditable<String>{
 
