@@ -39,7 +39,7 @@ public class CompanyController {
 	private final CompanyServiceI service;
 	
 	@PostMapping
-	@ApiOperation(value = "Save an address" ,notes = "Returns the object created.", response = CompanyDto.class)
+	@ApiOperation(value = "Save a company" ,notes = "Returns the object created.", response = CompanyDto.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Successfully created the record"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
