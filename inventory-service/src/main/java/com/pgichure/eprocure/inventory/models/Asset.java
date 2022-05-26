@@ -32,6 +32,11 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Asset extends Auditable<String>{
 
+	@Id
+	@Column(name = "id", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private Long id;
+	
 	@ManyToOne
 	@JoinColumn(name = "category_id", nullable = false)
 	private AssetCategory category;
