@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 
 /**
- * The Company controller
+ * The Country controller
  * @author pgichure
  *
  */
