@@ -7,4 +7,4 @@
  * @author pgichure
  *
  */
-package com.pgichure.eprocure.employees.Controllers;
+package com.pgichure.eprocure.employees.controllers;
