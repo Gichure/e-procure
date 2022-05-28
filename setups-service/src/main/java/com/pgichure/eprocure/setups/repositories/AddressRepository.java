@@ -14,6 +14,6 @@ import com.pgichure.eprocure.setups.models.Address;
  */
 public interface AddressRepository extends JpaRepository<Address, Long> {
   
-    public List<Address> findAllByEmaill(String email);
+    public List<Address> findAllByEmail(String email);
   
 }

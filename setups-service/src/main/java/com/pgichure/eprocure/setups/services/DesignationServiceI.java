@@ -16,12 +16,12 @@ public interface DesignationServiceI{
   
     public DesignationDto save(DesignationDto designationDto);
   
-    public DesignationDto findById(Long id);
+    public DesignationDto findById(Long id) throws Exception;
   
     public DesignationDto update(Long id, DesignationDto designationDto);
   
     public List<DesignationDto> findAll(int page, int size, String sortDir, String sort);
   
-    public DesignationDto delete(Long id);
+    public DesignationDto delete(Long id) throws Exception;
   
 }

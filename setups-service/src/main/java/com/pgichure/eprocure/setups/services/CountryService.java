@@ -11,9 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.pgichure.eprocure.setups.dtos.AddressDto;
-import com.pgichure.eprocure.setups.models.Address;
-import com.pgichure.eprocure.setups.repositories.AddressRepository;
+import com.pgichure.eprocure.setups.dtos.CountryDto;
+import com.pgichure.eprocure.setups.models.Country;
+import com.pgichure.eprocure.setups.repositories.CountryRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,59 +23,53 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class AddressService implements AddressServiceI{
+public class CountryService implements CountryServiceI{
 	
-	private final AddressRepository addressRepository;
+	private final CountryRepository repository;
 	
 	private final ModelMapper modelMapper;
 
 	@Override
-	public AddressDto save(AddressDto addressDto) {
+	public CountryDto save(CountryDto countryDto) {
 		
-		Address address = modelMapper.map(addressDto, Address.class);
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		Country country = modelMapper.map(countryDto, Country.class);
+		country = this.repository.save(country);
+		return modelMapper.map(country, CountryDto.class);
 		
 	}
 
 	@Override
-	public AddressDto findById(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		return modelMapper.map(address, AddressDto.class);
+	public CountryDto findById(Long countryId) throws Exception {
+		Country country = repository.findById(countryId).orElseThrow(() -> new Exception("Country not found - " + countryId));
+		return modelMapper.map(country, CountryDto.class);
 	}
 
 	@Override
-	public AddressDto update(Long addressId, AddressDto addressDto) {
+	public CountryDto update(Long countryId, CountryDto countryDto) {
 		
-		if(!Objects.equals(addressId, addressDto.getId())){
+		if(!Objects.equals(countryId, countryDto.getId())){
             throw new IllegalArgumentException("IDs don't match");
         }
-		Address address = modelMapper.map(addressDto, Address.class);
+		Country country = modelMapper.map(countryDto, Country.class);
 		
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		country = this.repository.save(country);
+		return modelMapper.map(country, CountryDto.class);
 	}
 
-	@Override
-	public List<AddressDto> findAllByEmaill(String email) {
-		List<Address> addresses = addressRepository.findAllByEmaill(email);
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
-				.collect(Collectors.toList());
-	}
 
 	@Override
-	public List<AddressDto> findAll(int page, int size, String sortDir, String sort) {
+	public List<CountryDto> findAll(int page, int size, String sortDir, String sort) {
 		PageRequest pageRequest = PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
-		List<Address> addresses = addressRepository.findAll(pageRequest).getContent();
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
+		List<Country> addresses = repository.findAll(pageRequest).getContent();
+		return addresses.stream().map(country -> modelMapper.map(country, CountryDto.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public AddressDto delete(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		addressRepository.delete(address);
-		return modelMapper.map(address, AddressDto.class);
+	public CountryDto delete(Long countryId) throws Exception {
+		Country country = repository.findById(countryId).orElseThrow(() -> new Exception("Country not found - " + countryId));
+		repository.delete(country);
+		return modelMapper.map(country, CountryDto.class);
 	}
 	
 }

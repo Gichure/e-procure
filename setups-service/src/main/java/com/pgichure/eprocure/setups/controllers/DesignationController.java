@@ -46,7 +46,7 @@ public class DesignationController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
 	})
-	public ResponseEntity<DesignationDto> save(@RequestBody DepartmentDto designation){
+	public ResponseEntity<DesignationDto> save(@RequestBody DesignationDto designation){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(designation));
 	}
 	

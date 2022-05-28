@@ -5,6 +5,7 @@ package com.pgichure.eprocure.setups.models;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -43,12 +44,12 @@ public class Auditable<T> implements Serializable{
 	@CreatedDate
 	@Column(name = "date_created", updatable = false, nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private ZonedDateTime dateCreated;
+	private Date dateCreated;
 	
 	@LastModifiedDate
 	@Column(name = "date_updated", updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private ZonedDateTime dateUpdated;
+	private Date dateUpdated;
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(type="uuid-char")

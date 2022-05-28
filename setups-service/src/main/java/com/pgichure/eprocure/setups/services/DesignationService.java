@@ -11,9 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.pgichure.eprocure.setups.dtos.AddressDto;
-import com.pgichure.eprocure.setups.models.Address;
+import com.pgichure.eprocure.setups.dtos.DesignationDto;
+import com.pgichure.eprocure.setups.models.Designation;
 import com.pgichure.eprocure.setups.repositories.AddressRepository;
+import com.pgichure.eprocure.setups.repositories.DesignationRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,59 +24,52 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class AddressService implements AddressServiceI{
+public class DesignationService implements DesignationServiceI{
 	
-	private final AddressRepository addressRepository;
+	private final DesignationRepository repository;
 	
 	private final ModelMapper modelMapper;
 
 	@Override
-	public AddressDto save(AddressDto addressDto) {
+	public DesignationDto save(DesignationDto addressDto) {
 		
-		Address address = modelMapper.map(addressDto, Address.class);
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		Designation designation = modelMapper.map(addressDto, Designation.class);
+		designation = this.repository.save(designation);
+		return modelMapper.map(designation, DesignationDto.class);
 		
 	}
 
 	@Override
-	public AddressDto findById(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		return modelMapper.map(address, AddressDto.class);
+	public DesignationDto findById(Long designationId) throws Exception {
+		Designation designation = repository.findById(designationId).orElseThrow(() -> new Exception("Designation not found - " + designationId));
+		return modelMapper.map(designation, DesignationDto.class);
 	}
 
 	@Override
-	public AddressDto update(Long addressId, AddressDto addressDto) {
+	public DesignationDto update(Long designationId, DesignationDto addressDto) {
 		
-		if(!Objects.equals(addressId, addressDto.getId())){
+		if(!Objects.equals(designationId, addressDto.getId())){
             throw new IllegalArgumentException("IDs don't match");
         }
-		Address address = modelMapper.map(addressDto, Address.class);
+		Designation designation = modelMapper.map(addressDto, Designation.class);
 		
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		designation = this.repository.save(designation);
+		return modelMapper.map(designation, DesignationDto.class);
 	}
 
 	@Override
-	public List<AddressDto> findAllByEmaill(String email) {
-		List<Address> addresses = addressRepository.findAllByEmaill(email);
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public List<AddressDto> findAll(int page, int size, String sortDir, String sort) {
+	public List<DesignationDto> findAll(int page, int size, String sortDir, String sort) {
 		PageRequest pageRequest = PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
-		List<Address> addresses = addressRepository.findAll(pageRequest).getContent();
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
+		List<Designation> addresses = repository.findAll(pageRequest).getContent();
+		return addresses.stream().map(designation -> modelMapper.map(designation, DesignationDto.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public AddressDto delete(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		addressRepository.delete(address);
-		return modelMapper.map(address, AddressDto.class);
+	public DesignationDto delete(Long designationId) throws Exception {
+		Designation designation = repository.findById(designationId).orElseThrow(() -> new Exception("Designation not found - " + designationId));
+		repository.delete(designation);
+		return modelMapper.map(designation, DesignationDto.class);
 	}
 	
 }

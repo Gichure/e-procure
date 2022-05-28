@@ -82,7 +82,7 @@ public class CurrencyController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
 	})
-	public ResponseEntity<CountryDto> delete(
+	public ResponseEntity<CurrencyDto> delete(
 			@ApiParam(value = "The ID of the object to delete", required = true)
 			@PathVariable("id") Long id) throws Exception{
 		CurrencyDto currency = service.delete(id);

@@ -16,12 +16,12 @@ public interface CompanyGroupServiceI{
   
     public CompanyGroupDto save(CompanyGroupDto companyGroupDto);
   
-    public CompanyGroupDto findById(Long id);
+    public CompanyGroupDto findById(Long id) throws Exception;
   
     public CompanyGroupDto update(Long id, CompanyGroupDto companyGroupDto);
   
     public List<CompanyGroupDto> findAll(int page, int size, String sortDir, String sort);
   
-    public CompanyGroupDto delete(Long id);
+    public CompanyGroupDto delete(Long id) throws Exception;
   
 }

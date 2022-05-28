@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class Companyervice implements CompanyServiceI{
+public class CompanyService implements CompanyServiceI{
 	
 	private final CompanyRepository companyRepository;
 	
@@ -45,14 +45,14 @@ public class Companyervice implements CompanyServiceI{
 	}
 
 	@Override
-	public CompanyDto update(Long compamnyId, CompanyDto companyDto) {
+	public CompanyDto update(Long companyId, CompanyDto companyDto) {
 		
 		if(!Objects.equals(companyId, companyDto.getId())){
             throw new IllegalArgumentException("IDs don't match");
         }
 		Company company = modelMapper.map(companyDto, Company.class);
 		
-		company = compamyRepository.save(company);
+		company = companyRepository.save(company);
 		return modelMapper.map(company, CompanyDto.class);
 	}
 

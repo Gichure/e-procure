@@ -11,9 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.pgichure.eprocure.setups.dtos.AddressDto;
-import com.pgichure.eprocure.setups.models.Address;
+import com.pgichure.eprocure.setups.dtos.ExchangeRateDto;
+import com.pgichure.eprocure.setups.models.ExchangeRate;
 import com.pgichure.eprocure.setups.repositories.AddressRepository;
+import com.pgichure.eprocure.setups.repositories.ExchangeRateRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,59 +24,53 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class AddressService implements AddressServiceI{
+public class ExchangeRateService implements ExchangeRateServiceI{
 	
-	private final AddressRepository addressRepository;
+	private final ExchangeRateRepository repository;
 	
 	private final ModelMapper modelMapper;
 
 	@Override
-	public AddressDto save(AddressDto addressDto) {
+	public ExchangeRateDto save(ExchangeRateDto rateDto) {
 		
-		Address address = modelMapper.map(addressDto, Address.class);
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		ExchangeRate rate = modelMapper.map(rateDto, ExchangeRate.class);
+		rate = this.repository.save(rate);
+		return modelMapper.map(rate, ExchangeRateDto.class);
 		
 	}
 
 	@Override
-	public AddressDto findById(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		return modelMapper.map(address, AddressDto.class);
+	public ExchangeRateDto findById(Long rateId) throws Exception {
+		ExchangeRate rate = repository.findById(rateId).orElseThrow(() -> new Exception("ExchangeRate not found - " + rateId));
+		return modelMapper.map(rate, ExchangeRateDto.class);
 	}
 
 	@Override
-	public AddressDto update(Long addressId, AddressDto addressDto) {
+	public ExchangeRateDto update(Long rateId, ExchangeRateDto rateDto) {
 		
-		if(!Objects.equals(addressId, addressDto.getId())){
+		if(!Objects.equals(rateId, rateDto.getId())){
             throw new IllegalArgumentException("IDs don't match");
         }
-		Address address = modelMapper.map(addressDto, Address.class);
+		ExchangeRate rate = modelMapper.map(rateDto, ExchangeRate.class);
 		
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		rate = this.repository.save(rate);
+		return modelMapper.map(rate, ExchangeRateDto.class);
 	}
 
-	@Override
-	public List<AddressDto> findAllByEmaill(String email) {
-		List<Address> addresses = addressRepository.findAllByEmaill(email);
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
-				.collect(Collectors.toList());
-	}
 
 	@Override
-	public List<AddressDto> findAll(int page, int size, String sortDir, String sort) {
+	public List<ExchangeRateDto> findAll(int page, int size, String sortDir, String sort) {
 		PageRequest pageRequest = PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
-		List<Address> addresses = addressRepository.findAll(pageRequest).getContent();
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
+		List<ExchangeRate> addresses = repository.findAll(pageRequest).getContent();
+		return addresses.stream().map(rate -> modelMapper.map(rate, ExchangeRateDto.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public AddressDto delete(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		addressRepository.delete(address);
-		return modelMapper.map(address, AddressDto.class);
+	public ExchangeRateDto delete(Long rateId) throws Exception {
+		ExchangeRate rate = repository.findById(rateId).orElseThrow(() -> new Exception("ExchangeRate not found - " + rateId));
+		repository.delete(rate);
+		return modelMapper.map(rate, ExchangeRateDto.class);
 	}
 	
 }

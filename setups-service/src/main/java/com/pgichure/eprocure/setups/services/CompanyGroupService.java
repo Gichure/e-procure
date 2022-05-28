@@ -30,10 +30,10 @@ public class CompanyGroupService implements CompanyGroupServiceI{
 	private final ModelMapper modelMapper;
 
 	@Override
-	public CompanyGroupDto save(CompanyGroupDto addressDto) {
+	public CompanyGroupDto save(CompanyGroupDto companyGroupDto) {
 		
-		CompanyGroup group = modelMapper.map(addressDto, CompanyGroup.class);
-		group = this.companyGroupsRepository.save(address);
+		CompanyGroup group = modelMapper.map(companyGroupDto, CompanyGroup.class);
+		group = this.companyGroupRepository.save(group);
 		return modelMapper.map(group, CompanyGroupDto.class);
 		
 	}
@@ -50,9 +50,9 @@ public class CompanyGroupService implements CompanyGroupServiceI{
 		if(!Objects.equals(groupId, companyGroupDto.getId())){
             throw new IllegalArgumentException("IDs don't match");
         }
-		CompanyGroup group = modelMapper.map(addressDto, CompanyGroup.class);
+		CompanyGroup group = modelMapper.map(companyGroupDto, CompanyGroup.class);
 		
-		group = this.addressRepository.save(address);
+		group = this.companyGroupRepository.save(group);
 		return modelMapper.map(group, CompanyGroupDto.class);
 	}
 
