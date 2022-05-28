@@ -10,6 +10,12 @@ https://www.sivalabs.in/microservices-part-6-distributed-tracing-with-spring-clo
 https://github.com/AlicanAkkus/microservice-docker
 https://morioh.com/p/3fe99c4391e4
 
+CI/CD
+https://faun.pub/setup-a-circleci-pipeline-for-a-containerized-spring-boot-app-93045fa060de
+https://medium.com/@jason.lanjun/deploy-spring-boot-api-to-heroku-via-circleci-and-github-dfb0946be7f6
+https://gist.github.com/pathakashish/6a1449168eb870ce65ba68c12d1776f2
+
+
 Authentication Notes
 https://dev.to/prafful/spring-boot-rest-api-authentication-best-practices-using-jwt-2022-3j2d
 https://github.com/prafful98/rest-api-authentication-tutorial
