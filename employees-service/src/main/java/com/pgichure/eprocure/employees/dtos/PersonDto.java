@@ -4,6 +4,8 @@
 package com.pgichure.eprocure.employees.dtos;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 import com.pgichure.eprocure.employees.enums.Gender;
 
@@ -30,7 +32,7 @@ public class PersonDto implements Serializable{
   
 	private Gender gender;
 	
-	private ZonedDateTime dob;
+	private Date dob;
 	
 	private Long addressId;
 	

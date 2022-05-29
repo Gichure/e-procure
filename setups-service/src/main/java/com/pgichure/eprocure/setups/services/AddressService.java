@@ -57,8 +57,8 @@ public class AddressService implements AddressServiceI{
 	}
 
 	@Override
-	public List<AddressDto> findAllByEmaill(String email) {
-		List<Address> addresses = addressRepository.findAllByEmaill(email);
+	public List<AddressDto> findAllByEmail(String email) {
+		List<Address> addresses = addressRepository.findAllByEmail(email);
 		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
 				.collect(Collectors.toList());
 	}

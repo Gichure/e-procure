@@ -16,12 +16,12 @@ public interface ExchangeRateServiceI{
   
     public ExchangeRateDto save(ExchangeRateDto exchangeRateDto);
   
-    public ExchangeRateDto findById(Long id);
+    public ExchangeRateDto findById(Long id) throws Exception;
   
     public ExchangeRateDto update(Long id, ExchangeRateDto exchangeRateDto);
   
     public List<ExchangeRateDto> findAll(int page, int size, String sortDir, String sort);
   
-    public ExchangeRateDto delete(Long id);
+    public ExchangeRateDto delete(Long id) throws Exception;
   
 }

@@ -16,12 +16,12 @@ public interface CurrencyServiceI{
   
     public CurrencyDto save(CurrencyDto currencyDto);
   
-    public CurrencyDto findById(Long id);
+    public CurrencyDto findById(Long id) throws Exception;
   
     public CurrencyDto update(Long id, CurrencyDto currencyDto);
   
     public List<CurrencyDto> findAll(int page, int size, String sortDir, String sort);
   
-    public CurrencyDto delete(Long id);
+    public CurrencyDto delete(Long id) throws Exception;
   
 }

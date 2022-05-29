@@ -20,7 +20,7 @@ public interface AddressServiceI{
   
     public AddressDto update(Long addressId, AddressDto addressDto);
   
-    public List<AddressDto> findAllByEmaill(String email);
+    public List<AddressDto> findAllByEmail(String email);
   
     public List<AddressDto> findAll(int page, int size, String sortDir, String sort);
   

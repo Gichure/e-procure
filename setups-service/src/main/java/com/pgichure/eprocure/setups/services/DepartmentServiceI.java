@@ -16,12 +16,12 @@ public interface DepartmentServiceI{
   
     public DepartmentDto save(DepartmentDto departmentDto);
   
-    public DepartmentDto findById(Long id);
+    public DepartmentDto findById(Long id) throws Exception;
   
     public DepartmentDto update(Long id, DepartmentDto departmentDto);
   
     public List<DepartmentDto> findAll(int page, int size, String sortDir, String sort);
   
-    public DepartmentDto delete(Long id);
+    public DepartmentDto delete(Long id) throws Exception;
   
 }

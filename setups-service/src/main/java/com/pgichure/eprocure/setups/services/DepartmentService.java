@@ -11,9 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.pgichure.eprocure.setups.dtos.AddressDto;
-import com.pgichure.eprocure.setups.models.Address;
+import com.pgichure.eprocure.setups.dtos.DepartmentDto;
+import com.pgichure.eprocure.setups.models.Department;
 import com.pgichure.eprocure.setups.repositories.AddressRepository;
+import com.pgichure.eprocure.setups.repositories.DepartmentRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,59 +24,53 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class AddressService implements AddressServiceI{
+public class DepartmentService implements DepartmentServiceI{
 	
-	private final AddressRepository addressRepository;
+	private final DepartmentRepository departmentRepository;
 	
 	private final ModelMapper modelMapper;
 
 	@Override
-	public AddressDto save(AddressDto addressDto) {
+	public DepartmentDto save(DepartmentDto addressDto) {
 		
-		Address address = modelMapper.map(addressDto, Address.class);
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		Department department = modelMapper.map(addressDto, Department.class);
+		department = this.departmentRepository.save(department);
+		return modelMapper.map(department, DepartmentDto.class);
 		
 	}
 
 	@Override
-	public AddressDto findById(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		return modelMapper.map(address, AddressDto.class);
+	public DepartmentDto findById(Long departmentId) throws Exception {
+		Department department = departmentRepository.findById(departmentId).orElseThrow(() -> new Exception("Department not found - " + departmentId));
+		return modelMapper.map(department, DepartmentDto.class);
 	}
 
 	@Override
-	public AddressDto update(Long addressId, AddressDto addressDto) {
+	public DepartmentDto update(Long departmentId, DepartmentDto addressDto) {
 		
-		if(!Objects.equals(addressId, addressDto.getId())){
+		if(!Objects.equals(departmentId, addressDto.getId())){
             throw new IllegalArgumentException("IDs don't match");
         }
-		Address address = modelMapper.map(addressDto, Address.class);
+		Department department = modelMapper.map(addressDto, Department.class);
 		
-		address = this.addressRepository.save(address);
-		return modelMapper.map(address, AddressDto.class);
+		department = this.departmentRepository.save(department);
+		return modelMapper.map(department, DepartmentDto.class);
 	}
 
-	@Override
-	public List<AddressDto> findAllByEmaill(String email) {
-		List<Address> addresses = addressRepository.findAllByEmaill(email);
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
-				.collect(Collectors.toList());
-	}
 
 	@Override
-	public List<AddressDto> findAll(int page, int size, String sortDir, String sort) {
+	public List<DepartmentDto> findAll(int page, int size, String sortDir, String sort) {
 		PageRequest pageRequest = PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
-		List<Address> addresses = addressRepository.findAll(pageRequest).getContent();
-		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
+		List<Department> departments = departmentRepository.findAll(pageRequest).getContent();
+		return departments.stream().map(department -> modelMapper.map(department, DepartmentDto.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public AddressDto delete(Long addressId) throws Exception {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new Exception("Address not found - " + addressId));
-		addressRepository.delete(address);
-		return modelMapper.map(address, AddressDto.class);
+	public DepartmentDto delete(Long departmentId) throws Exception {
+		Department department = departmentRepository.findById(departmentId).orElseThrow(() -> new Exception("Department not found - " + departmentId));
+		departmentRepository.delete(department);
+		return modelMapper.map(department, DepartmentDto.class);
 	}
 	
 }

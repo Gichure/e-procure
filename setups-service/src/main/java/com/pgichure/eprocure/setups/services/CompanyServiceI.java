@@ -16,12 +16,12 @@ public interface CompanyServiceI{
   
     public CompanyDto save(CompanyDto companyDto);
   
-    public CompanyDto findById(Long id);
+    public CompanyDto findById(Long id) throws Exception;
   
     public CompanyDto update(Long id, CompanyDto companyDto);
   
     public List<CompanyDto> findAll(int page, int size, String sortDir, String sort);
   
-    public CompanyDto delete(Long id);
+    public CompanyDto delete(Long id) throws Exception;
   
 }

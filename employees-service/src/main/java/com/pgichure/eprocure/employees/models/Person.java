@@ -4,6 +4,7 @@
 package com.pgichure.eprocure.employees.models;
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +48,7 @@ public class Person extends Auditable<String>{
 	private Gender gender;
 	
 	@Column(name = "dob", nullable = false)
-	private ZonedDateTime dob;
+	private Date dob;
 	
 	@Column(name = "address_id", nullable = false)
 	private Long addressId;

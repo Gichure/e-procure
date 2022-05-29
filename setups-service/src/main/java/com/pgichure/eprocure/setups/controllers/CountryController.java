@@ -97,7 +97,7 @@ public class CountryController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
 	})
-	public ResponseEntity<CompanyDto> update(
+	public ResponseEntity<CountryDto> update(
 			@ApiParam(value = "The ID of the object to delete", required = true) Long id,
 			@ApiParam(value = "Object details to be updated in database table", required = true)
 			@RequestBody CountryDto country){
