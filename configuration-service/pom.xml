@@ -9,7 +9,7 @@
 		<version>2.6.6</version>
   	</parent>
 	<packaging>jar</packaging>
-	<name>E-Procurement System Configuration Service</name>
+	<name>E-Procurement System Configurations Service</name>
 	<description>E-Procurement System to meet the needs of automation in the internal procurement process of a company.</description>
 	<developers>
 		<developer>
