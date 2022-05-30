@@ -53,16 +53,22 @@ jobs:
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
+          name: Uploading setups-service
           path: setups-service/target/setups-service-1.0.0.jar
       - store_artifacts:
+          name: Uploading workflow-service
           path: workflow-service/target/workflow-service-1.0.0.jar
       - store_artifacts:
+          name: Uploading employees-service
           path: employees-service/target/employees-service-1.0.0.jar
       - store_artifacts:
+          name: Uploading configurations-service
           path: configuration-service/target/configurations-service-1.0.0.jar
       - store_artifacts:
+          name: Uploading discovery-service
           path: discovery-service/target/discovery-service-1.0.0.jar
       - store_artifacts:
+          name: Uploading gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
 workflows:
   Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
