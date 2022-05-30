@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/gichure/e-procure/tree/main)
+[![CircleCI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)
 
 
 # e-procure
@@ -10,16 +10,19 @@ E-Procurement System to meet the needs of automation in the internal procurement
 4.  Each microservice can build, test, run, dockerize, deploy & run independently using Docker, Travis and Kubernetes.
 
 ## Tools & Techologies
--  Spring Boot
+-  Spring Boot for Business Services
 -  Microservices Architecture
--  Spring Cloud
--  MySQL
+-  Spring Cloud for MSA
+-  MySQL for RDBMS
 -  Activiti for BPMN
 -  Mockito for Testing
--  Docker
--  Flyway
--  Apache Kafka
--  Keycloack
+-  Docker for Packaging and Deployment
+-  Flyway for Database Versioning
+-  Apache Kafka for Messaging
+-  Keycloack for Authentication and Authorization
+-  CircleCi for CI/CD
+-  Swagger for API Documentation
+
 
 ## Modules
 1.  Settings, Parameters and General Setups
@@ -51,7 +54,7 @@ E-Procurement System to meet the needs of automation in the internal procurement
 ## Postman Collection
 You can access the postman collection [here]()  
 ### Process Flow
-![](resources/images/process_flow.jpg)
+![E-Procure Process Flow](resources/images/process_flow.jpg)
 
 #### Contributions
 -  [Paul Gichure](https://linkedin.com/in/gichure). You can reach out at e-procure@gichure.me.ke
