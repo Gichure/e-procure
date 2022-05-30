@@ -21,13 +21,39 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - run:
+          name: Generate cumulative pom.xml checksum
+          command: |
+            find . -type f -name "pom.xml" -exec sh -c "sha256sum {} >> ~/pom-checksum.tmp" \;
+            sort -o ~/pom-checksum ~/pom-checksum.tmp
+          when: always
+      - restore_cache:
+          keys:
+            - e-procure-{{ checksum "~/pom-checksum" }}
+            - e-procure-
+      - run: mvn de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: e-procure-{{ checksum "~/pom-checksum" }}
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn clean package
       - run:
           name: Test
           command: mvn test
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: setups-service/target/setups-service-1.0.0.jar
 workflows:
   Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
