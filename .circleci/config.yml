@@ -70,12 +70,6 @@ jobs:
       - store_artifacts:
           name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
-  release:
-    docker:
-      - image: cibuilds/github:0.10
-    steps:
-      - attach_workspace:
-          at: ./setups-service/target
       - run:
           name: "Publish Setups Service Release"
           command: |
@@ -85,6 +79,3 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - release:
-          requires:
-            - build-and-test
