@@ -53,22 +53,22 @@ jobs:
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
-          name: Uploading setups-service
+          name: Archiving setups-service
           path: setups-service/target/setups-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading workflow-service
+          name: Archiving workflow-service
           path: workflow-service/target/workflow-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading employees-service
+          name: Archiving employees-service
           path: employees-service/target/employees-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading configurations-service
+          name: Archiving configurations-service
           path: configuration-service/target/configurations-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading discovery-service
+          name: Archiving discovery-service
           path: discovery-service/target/discovery-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading gateway-service
+          name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
   release:
     docker:
@@ -79,8 +79,7 @@ jobs:
       - run:
           name: "Publish Setups Service Release"
           command: |
-            VERSION=$(my-binary --version)
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./setups-service/target/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${1.0.0} ./setups-service/target/
 workflows:
   Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
