@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  gh: circleci/github-cli@1.0
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -10,9 +11,10 @@ jobs:
     # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
-      - image: cimg/openjdk:11.0
+     - image: cimg/openjdk:17.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    parallelism: 4
     working_directory: ~/e-procure
     environment:
       # Customize the JVM maximum heap limit
@@ -53,25 +55,41 @@ jobs:
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
-          name: Uploading setups-service
+          name: Archiving setups-service
           path: setups-service/target/setups-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading workflow-service
+          name: Archiving workflow-service
           path: workflow-service/target/workflow-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading employees-service
+          name: Archiving employees-service
           path: employees-service/target/employees-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading configurations-service
+          name: Archiving configurations-service
           path: configuration-service/target/configurations-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading discovery-service
+          name: Archiving discovery-service
           path: discovery-service/target/discovery-service-1.0.0.jar
       - store_artifacts:
-          name: Uploading gateway-service
+          name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
+      #- run:
+      #    name: "Publish Setups Service Release"
+      #    command: |
+      #      ghr -t "${GITHUB_TOKEN}" -u "${CIRCLE_PROJECT_USERNAME}" -r "${CIRCLE_PROJECT_REPONAME}" -c "${CIRCLE_SHA1}" -delete "${CIRCLE_TAG}" ./setups-service/target/
 workflows:
   Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - gh/release:
+          notes-file: changelog.md
+          tag: 1.0.0
+          title: The initial release
+          requires:
+            - build-and-test
+          context:
+            - GITHUB_CREDS
+          filters:
+            branches:
+              only:
+                - main
