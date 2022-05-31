@@ -81,7 +81,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - gh/release
+      - gh/release:
           notes-file: changelog.md
           tag: 1.0.0
           title: The initial release
