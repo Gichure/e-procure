@@ -1,4 +1,4 @@
-package com.eprocure.setups.repositories;
+package com.pgichure.eprocure.setups.repositories;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,9 +21,9 @@ public class AddressRepositoryTest{
 
 	@Test
 	public void find_no_addresses_if_repo_is_empty() {
-		Iterable<Player> players = repository.findAll();
+		Iterable<Address> addresses = repository.findAll();
 
-		assertThat(players).isEmpty();
+		assertThat(addresses).isEmpty();
 	}
   
   @Test
