@@ -72,7 +72,6 @@ jobs:
       - store_artifacts:
           name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
-      - gh/release
       #- run:
       #    name: "Publish Setups Service Release"
       #    command: |
