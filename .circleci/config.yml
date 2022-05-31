@@ -71,14 +71,10 @@ jobs:
           name: Uploading gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
       - run:
-          name: Create Release
+          name: "Publish Setups Service Release"
           command: |
-            tag=$(semantics --output-tag)
-            if [ "$tag" ]; then
-              ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace $tag dist/
-            else
-              echo "The commit message(s) did not indicate a major/minor/patch version."
-            fi
+            VERSION=$(my-binary --version)
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./setups-service/target/
 workflows:
   Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
