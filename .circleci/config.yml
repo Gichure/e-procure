@@ -41,7 +41,7 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn clean package
+          command: mvn clean -DskipTests package
       - run:
           name: Test
           command: mvn test
@@ -72,6 +72,7 @@ jobs:
       - store_artifacts:
           name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
+      - gh/release
       #- run:
       #    name: "Publish Setups Service Release"
       #    command: |
@@ -81,15 +82,3 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - gh/release:
-          notes-file: changelog.md
-          tag: 1.0.0
-          title: The initial release
-          requires:
-            - build-and-test
-          context:
-            - GITHUB_CREDS
-          filters:
-            branches:
-              only:
-                - main
