@@ -1,27 +1,15 @@
 package com.pgichure.eprocure.setups.repositories;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.pgichure.eprocure.setups.models.Address;
 
+import lombok.RequiredArgsConstructor;
+
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
+@RequiredArgsConstructor
 public class AddressRepositoryTest{
 
-	@Autowired
-	AddressRepository repository;
-
-	public void find_no_addresses_if_repo_is_empty() {
-		Iterable<Address> addresses = repository.findAll();
-
-		assertThat(addresses).isEmpty();
-	}
-  
-	public void save_an_address() {
-
-	}
-  
- 
 }
