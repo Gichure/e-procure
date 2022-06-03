@@ -5,7 +5,7 @@ spring:
       import-check:
         enabled: false
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
   datasource:
