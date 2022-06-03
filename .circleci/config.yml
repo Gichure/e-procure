@@ -83,7 +83,7 @@ jobs:
             sudo mv /tmp/docker/* /usr/bin
       - run:
           name: Build setups-service Docker image
-          command: docker build -t eprocure/setups-service:latest . setups-service/Dockerfile
+          command: docker build -t eprocure/setups-service:latest . -f setups-service/Dockerfile
       - run:
         # Pushes the Docker image you created to the Docker Hub.
           name: Push to Docker Hub
