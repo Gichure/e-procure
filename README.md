@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Gichure/e-procure/tree/develop.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/develop)
+[![CircleCI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)
 
 
 # e-procure
