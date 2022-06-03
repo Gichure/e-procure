@@ -82,8 +82,8 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             sudo mv /tmp/docker/* /usr/bin
       - run:
-          name: Build Docker image
-          command: docker build -t eprocure/setups-service:latest .
+          name: Build setups-service Docker image
+          command: docker build -t eprocure/setups-service:latest . setups-service/Dockerfile
       - run:
         # Pushes the Docker image you created to the Docker Hub.
           name: Push to Docker Hub
