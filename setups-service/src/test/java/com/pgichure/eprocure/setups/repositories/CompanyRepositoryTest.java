@@ -19,7 +19,7 @@ public class CompanyRepositoryTest{
 	private TestEntityManager entityManager;
 	
 	@Autowired
-	private CompanyGroupRepository repository;
+	private CompanyRepository repository;
 
 	@Test
 	public void should_find_no_records_if_repository_is_empty() {
