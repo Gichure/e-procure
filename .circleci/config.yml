@@ -71,16 +71,6 @@ jobs:
       - store_artifacts:
           name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
-      - setup_remote_docker
-      - run:
-        # installs a docker client that will be used to run the docker commands
-          name: Install Docker client
-          command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            sudo mv /tmp/docker/* /usr/bin
       - run:
           name: Build setups-service Docker image
           command: docker build -t eprocure/setups-service:latest . -f setups-service/Dockerfile
