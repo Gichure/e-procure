@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @DataJpaTest
-public class CompanyGroupRepositoryTest{
+public class CompanyRepositoryTest{
 	
 	@Autowired
 	private TestEntityManager entityManager;
