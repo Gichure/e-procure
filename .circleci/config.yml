@@ -5,7 +5,7 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:
+  build-and-test-and-package:
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # Be sure to update the Docker image tag below to openjdk version of your application.
@@ -42,9 +42,9 @@ jobs:
       - run:
           name: Build
           command: mvn clean -DskipTests package
-      - run:
-          name: Test
-          command: mvn test
+    #  - run:
+    #      name: Test
+    #      command: mvn test
       - run:
           name: Save test results
           command: |
@@ -55,7 +55,7 @@ jobs:
           path: ~/test-results
       - store_artifacts:
           name: Archiving setups-service
-          path: setups-service/target/setups-service-1.0.0.jar
+          path: setups-service/target/setups-service-1.0.0.jar    
       - store_artifacts:
           name: Archiving workflow-service
           path: workflow-service/target/workflow-service-1.0.0.jar
@@ -71,12 +71,28 @@ jobs:
       - store_artifacts:
           name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
-    #  - run:
-    #      name: "Publish Setups Service Release"
-    #      command: |
-    #        ghr -t "${GITHUB_TOKEN}" -u "${CIRCLE_PROJECT_USERNAME}" -r "${CIRCLE_PROJECT_REPONAME}" -c "${CIRCLE_SHA1}" -delete "${CIRCLE_TAG}" ./setups-service/target/
+      - setup_remote_docker
+      - run:
+        # installs a docker client that will be used to run the docker commands
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+      - run:
+          name: Build Docker image
+          command: docker build -t eprocure/setups-service:latest .
+      - run:
+        # Pushes the Docker image you created to the Docker Hub.
+          name: Push to Docker Hub
+          command: |
+            docker login -u $DCOKER_USERNAME -p $DOCKER_PASSWORD
+            docker push eprocure/setups-service:latest
 workflows:
   Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build-and-test
+      - build-and-test-and-package
+  
