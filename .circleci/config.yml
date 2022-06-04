@@ -38,13 +38,16 @@ jobs:
           paths:
             - ~/.m2
           key: e-procure-{{ checksum "~/pom-checksum" }}
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
           command: mvn clean -DskipTests package
-    #  - run:
-    #      name: Test
-    #      command: mvn test
+      - run:
+          name: Test
+          command: mvn test
       - run:
           name: Save test results
           command: |
@@ -85,4 +88,3 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test-and-package
-  
