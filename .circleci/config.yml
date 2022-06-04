@@ -59,7 +59,7 @@ jobs:
       - run: 
           name: Push setups-service docker image
           command: |
-            docker login -u $DOCKKER_USER -p $DOCKER_PASSWORD
+            echo $DOCKER_PASSWORD | docker login -u $DOCKKER_USER --password-stdin
             docker push pgichure/e-procure/setups-service:1.0.0
       - store_artifacts:
           name: Archiving setups-service
