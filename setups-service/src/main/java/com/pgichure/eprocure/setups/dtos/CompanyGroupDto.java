@@ -32,9 +32,9 @@ public class CompanyGroupDto implements Serializable{
 	
 	private AddressDto address;
 	
-	private String tax_identification_number;
+	private String taxIdentificationNumber;
 	
-	private String vat_number;
+	private String vatNumber;
 	
 	private CountryDto country;
 	

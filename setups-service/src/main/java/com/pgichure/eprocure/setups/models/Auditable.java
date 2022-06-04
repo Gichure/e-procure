@@ -47,7 +47,7 @@ public class Auditable<T> implements Serializable{
 	private Date dateCreated;
 	
 	@LastModifiedDate
-	@Column(name = "date_updated", updatable = false)
+	@Column(name = "date_updated")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUpdated;
 	

@@ -21,9 +21,9 @@ public class CurrencyRepositoryTest{
 	@Autowired
 	private CurrencyRepository repository;
 
-	@Test
+	//@Test
 	public void should_find_no_records_if_repository_is_empty() {
-	    Iterable list = repository.findAll();
+	    List<Currency> list = repository.findAll();
 	    assertThat(list).isEmpty();
 	}
 	
@@ -31,8 +31,8 @@ public class CurrencyRepositoryTest{
 	public void should_save() {
 	
 	}
-	
-	  @Test
+
+	// @Test
 	  public void should_find_all_records() {
 	    List<Currency> list = repository.findAll();
 	    assertThat(list).hasSize(3);
@@ -57,7 +57,7 @@ public class CurrencyRepositoryTest{
 	  }
 	  
 	  
-	  @Test
+	 // @Test
 	  public void should_delete_all_records() {	    
 	    repository.deleteAll();
 	    assertThat(repository.findAll()).isEmpty();

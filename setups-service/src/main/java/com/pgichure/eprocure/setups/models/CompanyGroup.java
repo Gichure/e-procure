@@ -54,10 +54,10 @@ public class CompanyGroup extends Auditable<String>{
 	private Address address;
 	
 	@Column(name = "tax_identification_number", unique = true, nullable = true)
-	private String tax_identification_number;
+	private String taxIdentificationNumber;
 	
 	@Column(name = "vat_number", unique = true, nullable = true)
-	private String vat_number;
+	private String vatNumber;
 	
 	@ManyToOne
 	@JoinColumn(name = "country_id", nullable = false)

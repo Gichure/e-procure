@@ -71,6 +71,7 @@ jobs:
       - store_artifacts:
           name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
+<<<<<<< HEAD
       - run:
           name: Build setups-service Docker image
           command: docker build -t eprocure/setups-service:latest . -f setups-service/Dockerfile
@@ -80,6 +81,17 @@ jobs:
           command: |
             docker login -u $DCOKER_USERNAME -p $DOCKER_PASSWORD
             docker push eprocure/setups-service:latest
+=======
+     # - run:
+     #     name: Build setups-service Docker image
+     #     command: docker build -t eprocure/setups-service:latest . -f setups-service/Dockerfile
+     # - run:
+        # Pushes the Docker image you created to the Docker Hub.
+     #     name: Push to Docker Hub
+     #     command: |
+     #       docker login -u $DCOKER_USERNAME -p $DOCKER_PASSWORD
+     #       docker push eprocure/setups-service:latest
+>>>>>>> develop
 workflows:
   Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.

@@ -46,23 +46,23 @@ public class Address extends Auditable<String> {
 	private AddressType addressType; 
 	
 	@Column(name = "contact_person", nullable = false)
-	private String contact_person;
+	private String contactPerson;
 	
 	@ManyToOne
 	@JoinColumn(name = "country_id", nullable = false)
 	private Country country;
 	
 	@Column(name = "zip_code")
-	private String zip_code;
+	private String zipCode;
 	
 	@Column(name = "city")
 	private String city;
 	
 	@Column(name = "postal_address")
-	private String postal_address;
+	private String postalAddress;
 	
 	@Column(name = "physical_address")
-	private String physical_address;
+	private String physicalAddress;
 	
 	@Column(name = "street")
 	private String street;
