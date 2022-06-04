@@ -14,7 +14,7 @@ E-Procurement System to meet the needs of automation in the internal procurement
 -  Microservices Architecture
 -  Spring Cloud for MSA
 -  MySQL for RDBMS
--  Activiti for BPMN
+-  Camunda for BPMN
 -  Mockito for Testing
 -  Docker for Packaging and Deployment
 -  Flyway for Database Versioning
@@ -50,6 +50,9 @@ E-Procurement System to meet the needs of automation in the internal procurement
 14. [frontend-service](ui-service/README.md)
 
 ## Starting Up
+Clone this repository.  
+From the root folder, run mvn clean package  
+Run docker compose up
 
 ## Postman Collection
 You can access the postman collection [here]()  
