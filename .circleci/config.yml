@@ -56,6 +56,11 @@ jobs:
           when: always
       - store_test_results:
           path: ~/test-results
+      - run: 
+          name: Push setups-service docker image
+          command: |
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+            docker push pgichure/e-procure/setups-service:1.0.0
       - store_artifacts:
           name: Archiving setups-service
           path: setups-service/target/setups-service-1.0.0.jar    
