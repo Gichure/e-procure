@@ -21,15 +21,9 @@ public class DepartmentRepositoryTest{
 	@Autowired
 	private DepartmentRepository repository;
 
-<<<<<<< HEAD
-	@Test
-	public void should_find_no_records_if_repository_is_empty() {
-	    Iterable list = repository.findAll();
-=======
 	//@Test
 	public void should_find_no_records_if_repository_is_empty() {
 	    List<Department> list = repository.findAll();
->>>>>>> develop
 	    assertThat(list).isEmpty();
 	}
 	

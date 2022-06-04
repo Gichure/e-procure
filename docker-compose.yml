@@ -8,12 +8,12 @@ services:
       args:
         - APP_NAME=discovery-service
         - APP_VERSION=1.0.0
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
     expose:
       - 8761
     ports:
       - 8761:8761
+    networks:
+      - eprocure-network
   configurations-service:
     image: e-procure/configurations-service:latest
     container_name: configurations-service
@@ -21,12 +21,14 @@ services:
       args:
         - APP_NAME=configurations-service
         - APP_VERSION=1.0.0
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
     expose:
       - 8888
     ports:
       - 8888:8888
+    depends_on:
+      - discovery-service
+    networks:
+      - eprocure-network
   gateway-service:
     image: e-procure/gateway-service:latest
     container_name: gateway-service
@@ -34,12 +36,14 @@ services:
       args:
         - APP_NAME=gateway-service
         - APP_VERSION=1.0.0
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
     expose:
       - 8081
     ports:
       - 8081:8081
+    depends_on:
+      - configurations-service
+    networks:
+      - eprocure-network
   setups-service:
     image: e-procure/setups-service:latest
     container_name: setups-service
@@ -47,12 +51,14 @@ services:
       args:
         - APP_NAME=setups-service
         - APP_VERSION=1.0.0
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
     expose:
       - 8084
     ports:
       - 8084:8084
+    depends_on:
+      - configurations-service
+    networks:
+      - eprocure-network
   workflow-service:
     image: e-procure/workflow-service:latest
     container_name: workflow-service
@@ -60,9 +66,14 @@ services:
       args:
         - APP_NAME=workflow-service
         - APP_VERSION=1.0.0
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
     expose:
       - 8083
     ports:
       - 8083:8083
+    depends_on:
+      - configurations-service
+    networks:
+      - eprocure-network
+
+networks:
+  eprocure-network:
