@@ -38,7 +38,9 @@
 		            </execution>
 		        </executions>
 		        <configuration>
-		            <repository>e-procure/${project.artifactId}</repository>
+		            <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+		            <repository>pgichure/e-procure/${project.artifactId}</repository>
+		            <!--<repository>registry.hub.docker.com/pgichure/e-procure/${project.artifactId}</repository>-->
 		            <tag>${project.version}</tag>
 		            <buildArgs>
 		                <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
