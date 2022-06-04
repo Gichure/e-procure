@@ -34,13 +34,13 @@ public class AddressDto implements Serializable{
 	
 	private CountryDto country;
 	
-	private String zip_code;
+	private String zipCode;
 	
 	private String city;
 	
-	private String postal_address;
+	private String postalAddress;
 	
-  	private String physical_address;
+  	private String physicalAddress;
 	
 	private String street;
 	

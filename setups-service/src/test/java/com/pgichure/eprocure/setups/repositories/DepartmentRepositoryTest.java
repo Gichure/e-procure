@@ -21,9 +21,9 @@ public class DepartmentRepositoryTest{
 	@Autowired
 	private DepartmentRepository repository;
 
-	@Test
+	//@Test
 	public void should_find_no_records_if_repository_is_empty() {
-	    Iterable list = repository.findAll();
+	    List<Department> list = repository.findAll();
 	    assertThat(list).isEmpty();
 	}
 	
@@ -32,7 +32,7 @@ public class DepartmentRepositoryTest{
 	
 	}
 	
-	  @Test
+	 // @Test
 	  public void should_find_all_records() {
 	    List<Department> list = repository.findAll();
 	    assertThat(list).hasSize(3);
@@ -57,7 +57,7 @@ public class DepartmentRepositoryTest{
 	  }
 	  
 	  
-	  @Test
+	 // @Test
 	  public void should_delete_all_records() {	    
 	    repository.deleteAll();
 	    assertThat(repository.findAll()).isEmpty();
