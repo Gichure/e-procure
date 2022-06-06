@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)
+[![CircleCI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)  [![CodeQL](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml)
 
 
 # e-procure
