@@ -1,4 +1,4 @@
-[![CI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)  
+[![CI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)
 [![Code Analysis](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml)
 [![Publishing Package](https://github.com/Gichure/e-procure/actions/workflows/maven-publish.yml/badge.svg?branch=main)](https://github.com/Gichure/e-procure/actions/workflows/maven-publish.yml)
 
