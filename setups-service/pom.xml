@@ -25,12 +25,35 @@
 				   </goals>
 			       </execution>
            		</executions>
-		</plugin>
+			</plugin>
 	    	<plugin> 
-		 	<groupId>org.sonarsource.scanner.maven</groupId> 
-		 	<artifactId>sonar-maven-plugin</artifactId> 
-		 	<version>3.9.1.2184</version> 
-		</plugin>
+			 	<groupId>org.sonarsource.scanner.maven</groupId> 
+			 	<artifactId>sonar-maven-plugin</artifactId> 
+			 	<version>3.9.1.2184</version> 
+			</plugin>
+			<plugin>
+			        <groupId>com.spotify</groupId>
+			        <artifactId>dockerfile-maven-plugin</artifactId>
+			        <version>${docker-plugin.version}</version>
+			        <executions>
+			            <execution>
+			                <id>default</id>
+			                <goals>
+			                    <goal>build</goal>
+			                    <goal>push</goal>
+			                </goals>
+			            </execution>
+			        </executions>
+			        <configuration>
+			            <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+			            <repository>pgichure/e-procure/${project.artifactId}</repository>
+			            <!--<repository>registry.hub.docker.com/pgichure/e-procure/${project.artifactId}</repository>-->
+			            <tag>${project.version}</tag>
+			            <buildArgs>
+			                <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+			            </buildArgs>
+			        </configuration>
+			    </plugin>
 	</plugins>
   </build>
 </project>

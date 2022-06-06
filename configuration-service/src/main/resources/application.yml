@@ -3,8 +3,6 @@ spring:
    # name of the application
     name: configurations-service
    # available profiles of the application 
-  profiles:
-    active: test,dev,uat,prod
   cloud:
     config:
       server:

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   discovery-service:
-    image: e-procure/discovery-service:latest
+    image: pgichure/e-procure/discovery-service:1.0.0
     container_name: discovery-service
     build:
       args:
@@ -15,12 +15,16 @@ services:
     networks:
       - eprocure-network
   configurations-service:
-    image: e-procure/configurations-service:latest
+    image: pgichure/e-procure/configurations-service:1.0.0
     container_name: configurations-service
     build:
       args:
         - APP_NAME=configurations-service
         - APP_VERSION=1.0.0
+    environment:
+      - JAVA_OPTS=
+         -DEUREKA_SERVER=http://discovery-service:8761/eureka
+    restart: on-failure
     expose:
       - 8888
     ports:
@@ -30,48 +34,66 @@ services:
     networks:
       - eprocure-network
   gateway-service:
-    image: e-procure/gateway-service:latest
+    image: pgichure/e-procure/gateway-service:1.0.0
     container_name: gateway-service
     build:
       args:
         - APP_NAME=gateway-service
         - APP_VERSION=1.0.0
+    environment:
+      - JAVA_OPTS=
+         -DEUREKA_SERVER=http://discovery-service:8761/eureka
+    restart: on-failure
     expose:
       - 8081
     ports:
       - 8081:8081
     depends_on:
+      - discovery-service
       - configurations-service
     networks:
       - eprocure-network
   setups-service:
-    image: e-procure/setups-service:latest
+    image: pgichure/e-procure/setups-service:1.0.0
     container_name: setups-service
     build:
       args:
         - APP_NAME=setups-service
         - APP_VERSION=1.0.0
+    environment:
+      - JAVA_OPTS=
+         -DEUREKA_SERVER=http://discovery-service:8761/eureka
+    restart: on-failure
     expose:
       - 8084
     ports:
       - 8084:8084
     depends_on:
+      - discovery-service
       - configurations-service
+      - gateway-service
     networks:
       - eprocure-network
   workflow-service:
-    image: e-procure/workflow-service:latest
+    image: pgichure/e-procure/workflow-service:1.0.0
     container_name: workflow-service
     build:
       args:
         - APP_NAME=workflow-service
         - APP_VERSION=1.0.0
+    environment:
+      - JAVA_OPTS=
+         -DEUREKA_SERVER=http://discovery-service:8761/eureka
+    restart: on-failure
     expose:
       - 8083
     ports:
       - 8083:8083
     depends_on:
+      - discovery-service
+      - gateway-service
       - configurations-service
+      - setups-service
     networks:
       - eprocure-network
 

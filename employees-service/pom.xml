@@ -24,6 +24,29 @@
                </execution>
            </executions>
 		</plugin>
+		<plugin>
+		        <groupId>com.spotify</groupId>
+		        <artifactId>dockerfile-maven-plugin</artifactId>
+		        <version>${docker-plugin.version}</version>
+		        <executions>
+		            <execution>
+		                <id>default</id>
+		                <goals>
+		                    <goal>build</goal>
+		                    <goal>push</goal>
+		                </goals>
+		            </execution>
+		        </executions>
+		        <configuration>
+		            <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+		            <repository>pgichure/e-procure/${project.artifactId}</repository>
+		            <!--<repository>registry.hub.docker.com/pgichure/e-procure/${project.artifactId}</repository>-->
+		            <tag>${project.version}</tag>
+		            <buildArgs>
+		                <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+		            </buildArgs>
+		        </configuration>
+		    </plugin>
 	</plugins>
   </build>
 </project>
