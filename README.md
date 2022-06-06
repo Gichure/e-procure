@@ -1,5 +1,6 @@
-[![CircleCI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)  [![CodeQL](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml)
-
+[![CI](https://circleci.com/gh/Gichure/e-procure/tree/main.svg?style=svg)](https://circleci.com/gh/Gichure/e-procure/tree/main)  
+[![Code Analysis](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/Gichure/e-procure/actions/workflows/codeql-analysis.yml)
+[![Publishing Package](https://github.com/Gichure/e-procure/actions/workflows/maven-publish.yml/badge.svg?branch=main)](https://github.com/Gichure/e-procure/actions/workflows/maven-publish.yml)
 
 # e-procure
 E-Procurement System to meet the needs of automation in the internal procurement process of a company.  
