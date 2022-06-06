@@ -89,7 +89,7 @@ jobs:
      #       docker login -u $DCOKER_USERNAME -p $DOCKER_PASSWORD
      #       docker push eprocure/setups-service:latest
 workflows:
-  Build and Test: # This is the name of the workflow, feel free to change it to better match your workflow.
+  Build, Test & Package: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test-and-package
