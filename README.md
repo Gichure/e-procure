@@ -66,6 +66,9 @@ You can access the postman collection [here]()
 #### License
 [MIT](LICENSE.md)
 
+#### Issues Reporting
+Issues are to be reported in [this format](.github/ISSUE_TEMPLATE/bug_report.md)
+
 #### Disclaimer
 This project is purely for learning purposes and thus it is subject to change without notice.  
 Should you need a stable version,reach out at e-procure@gichure.me.ke or fork this repository. 
