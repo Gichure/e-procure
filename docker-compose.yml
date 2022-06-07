@@ -43,6 +43,7 @@ services:
     environment:
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
+         -DCONFIG_SERVER=http://configurations-service:8888
     restart: on-failure
     expose:
       - 8081
@@ -84,6 +85,7 @@ services:
     environment:
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
+         -DCONFIG_SERVER=http://configurations-service:8888
     restart: on-failure
     expose:
       - 8083
@@ -96,6 +98,52 @@ services:
       - setups-service
     networks:
       - eprocure-network
-
+  setups-service:
+    image: pgichure/e-procure/setups-service:1.0.0
+    container_name: setups-service
+    build:
+      args:
+        - APP_NAME=setups-service
+        - APP_VERSION=1.0.0
+    environment:
+      - JAVA_OPTS=
+         -DEUREKA_SERVER=http://discovery-service:8761/eureka
+         -DCONFIG_SERVER=http://configurations-service:8888
+    restart: on-failure
+    expose:
+      - 8084
+    ports:
+      - 8084:8084
+    depends_on:
+      - discovery-service
+      - configurations-service
+      - gateway-service
+      - workflow-service
+    networks:
+      - eprocure-network
+  employees-service:
+    image: pgichure/e-procure/employees-service:1.0.0
+    container_name: employees-service
+    build:
+      args:
+        - APP_NAME=employees-service
+        - APP_VERSION=1.0.0
+    environment:
+      - JAVA_OPTS=
+         -DEUREKA_SERVER=http://discovery-service:8761/eureka
+         -DCONFIG_SERVER=http://configurations-service:8888
+    restart: on-failure
+    expose:
+      - 8085
+    ports:
+      - 8085:8085
+    depends_on:
+      - discovery-service
+      - configurations-service
+      - gateway-service
+      - setups-service
+      - workflow-service
+    networks:
+      - eprocure-network
 networks:
   eprocure-network:

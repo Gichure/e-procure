@@ -1,4 +1,4 @@
-FROM openjdk:8u111-jdk-alpine
+FROM eclipse-temurin:17-jdk-focal
 MAINTAINER Paul Gichure
 VOLUME /tmp
 ADD /target/configurations-service-1.0.0.jar configurations-service-1.0.0.jar
