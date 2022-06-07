@@ -11,9 +11,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
 
     steps:
     - uses: actions/checkout@v3
+    - name: Build the packages
+      run: mvn clean package
     - name: Build the Discovery Service Docker image
       run: docker build . --file discovery-service/Dockerfile --tag eprocure/discovery-service:1.0.0
     - name: Build the Configuration Service Docker image
