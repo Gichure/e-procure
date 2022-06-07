@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Discovery Service Docker image
+      run: docker build . --file discovery-service/Dockerfile --tag eprocure/discovery-service:1.0.0
+    - name: Build the Configuration Service Docker image
+      run: docker build . --file configurations-service/Dockerfile --tag eprocure/configurations-service:1.0.0
+    - name: Build the Gateway Service Docker image
+      run: docker build . --file gateway-service/Dockerfile --tag eprocure/gateway-service:1.0.0
+    - name: Build the Setups Service Docker image
+      run: docker build . --file setups-service/Dockerfile --tag eprocure/setups-service:1.0.0
+    - name: Build the Workflow Service Docker image
+      run: docker build . --file workflow-service/Dockerfile --tag eprocure/workflow-service:1.0.0
+    - name: Build the Employees Service Docker image
+      run: docker build . --file employees-service/Dockerfile --tag eprocure/employees-service:1.0.0
