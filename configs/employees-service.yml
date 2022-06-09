@@ -1,6 +1,11 @@
 spring:
   application:
     name: employees-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: password
 server:
   port: 8085
 eureka:
