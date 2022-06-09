@@ -24,7 +24,7 @@
 		</developer>
 	</developers>
 	<modules>
-  	  <module>configuration-service</module>
+  	  <module>configurations-service</module>
 	  <module>discovery-service</module>
 	  <module>gateway-service</module>
 	  <module>setups-service</module>
