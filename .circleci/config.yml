@@ -56,11 +56,6 @@ jobs:
           when: always
       - store_test_results:
           path: ~/test-results
-     # - run: 
-     #     name: Push setups-service docker image
-     #     command: |
-     #       echo $DOCKER_PASSWORD | docker login -u $DOCKKER_USER --password-stdin
-     #       docker push pgichure/e-procure/setups-service:1.0.0
       - store_artifacts:
           name: Archiving setups-service
           path: setups-service/target/setups-service-1.0.0.jar    
@@ -72,22 +67,13 @@ jobs:
           path: employees-service/target/employees-service-1.0.0.jar
       - store_artifacts:
           name: Archiving configurations-service
-          path: configuration-service/target/configurations-service-1.0.0.jar
+          path: configurations-service/target/configurations-service-1.0.0.jar
       - store_artifacts:
           name: Archiving discovery-service
           path: discovery-service/target/discovery-service-1.0.0.jar
       - store_artifacts:
           name: Archiving gateway-service
           path: gateway-service/target/gateway-service-1.0.0.jar
-     # - run:
-     #     name: Build setups-service Docker image
-     #     command: docker build -t eprocure/setups-service:latest . -f setups-service/Dockerfile
-     # - run:
-        # Pushes the Docker image you created to the Docker Hub.
-     #     name: Push to Docker Hub
-     #     command: |
-     #       docker login -u $DCOKER_USERNAME -p $DOCKER_PASSWORD
-     #       docker push eprocure/setups-service:latest
 workflows:
   Build, Test & Package: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
