@@ -8,10 +8,15 @@ services:
       args:
         - APP_NAME=discovery-service
         - APP_VERSION=1.0.0
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
     expose:
       - 8761
     ports:
       - 8761:8761
+    depends_on:
+      - rabbitmq
+    network_mode: "host"
     networks:
       - eprocure-network
   configurations-service:
@@ -22,6 +27,7 @@ services:
         - APP_NAME=configurations-service
         - APP_VERSION=1.0.0
     environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
     restart: on-failure
@@ -31,6 +37,7 @@ services:
       - 8888:8888
     depends_on:
       - discovery-service
+      - rabbitmq
     networks:
       - eprocure-network
   gateway-service:
@@ -41,6 +48,7 @@ services:
         - APP_NAME=gateway-service
         - APP_VERSION=1.0.0
     environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
          -DCONFIG_SERVER=http://configurations-service:8888
@@ -52,6 +60,7 @@ services:
     depends_on:
       - discovery-service
       - configurations-service
+      - rabbitmq
     networks:
       - eprocure-network
   setups-service:
@@ -62,6 +71,7 @@ services:
         - APP_NAME=setups-service
         - APP_VERSION=1.0.0
     environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
     restart: on-failure
@@ -73,6 +83,7 @@ services:
       - discovery-service
       - configurations-service
       - gateway-service
+      - rabbitmq
     networks:
       - eprocure-network
   workflow-service:
@@ -83,6 +94,7 @@ services:
         - APP_NAME=workflow-service
         - APP_VERSION=1.0.0
     environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
          -DCONFIG_SERVER=http://configurations-service:8888
@@ -96,6 +108,7 @@ services:
       - gateway-service
       - configurations-service
       - setups-service
+      - rabbitmq
     networks:
       - eprocure-network
   setups-service:
@@ -106,6 +119,7 @@ services:
         - APP_NAME=setups-service
         - APP_VERSION=1.0.0
     environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
          -DCONFIG_SERVER=http://configurations-service:8888
@@ -119,6 +133,7 @@ services:
       - configurations-service
       - gateway-service
       - workflow-service
+      - rabbitmq
     networks:
       - eprocure-network
   employees-service:
@@ -129,6 +144,7 @@ services:
         - APP_NAME=employees-service
         - APP_VERSION=1.0.0
     environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq 
       - JAVA_OPTS=
          -DEUREKA_SERVER=http://discovery-service:8761/eureka
          -DCONFIG_SERVER=http://configurations-service:8888
@@ -143,7 +159,27 @@ services:
       - gateway-service
       - setups-service
       - workflow-service
+      - rabbitmq
+    networks:
+      - eprocure-network      
+  rabbitmq:
+    image: rabbitmq:3.5.3-management
+    container_name: rabbitmq  
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
     networks:
       - eprocure-network
+  mysql:
+    image: mysql:8.0.17
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: e_procure_db
+      MYSQL_ROOT_PASSWORD: Root123#@!
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: Dev123#@!
 networks:
   eprocure-network:
