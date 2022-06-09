@@ -10,6 +10,9 @@ https://www.sivalabs.in/microservices-part-6-distributed-tracing-with-spring-clo
 https://github.com/AlicanAkkus/microservice-docker
 https://morioh.com/p/3fe99c4391e4
 
+Docker
+https://www.callicoder.com/spring-boot-mysql-react-docker-compose-example/
+
 CI/CD
 https://faun.pub/setup-a-circleci-pipeline-for-a-containerized-spring-boot-app-93045fa060de
 https://medium.com/@jason.lanjun/deploy-spring-boot-api-to-heroku-via-circleci-and-github-dfb0946be7f6
