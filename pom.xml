@@ -49,6 +49,7 @@
 		<junit.version>5.9.0-M1</junit.version>
 		<docker-plugin.version>1.4.13</docker-plugin.version>
 		<camunda.version>7.15.0</camunda.version>
+		<javafaker.version>1.0.2</javafaker.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -103,6 +104,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${javafaker.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
