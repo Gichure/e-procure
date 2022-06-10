@@ -1,4 +1,4 @@
-# E-Procurement System Configuration Service
+# E-Procurement System Configurations Service
 The configurations server service.
 
 ### Run
@@ -13,4 +13,4 @@ mvn clean package
 docker build -t e-procure/configurations-service .  
 
 ### Docker Run
-docker run -d -p 8888:8888 -e "SPRING_PROFILES_ACTIVE=prod" e-procure/configurations-service:latest  
+docker run -d -p 8888:8888 e-procure/configurations-service:latest  
