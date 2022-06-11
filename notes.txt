@@ -12,6 +12,7 @@ https://morioh.com/p/3fe99c4391e4
 
 Docker
 https://www.callicoder.com/spring-boot-mysql-react-docker-compose-example/
+https://aws.plainenglish.io/hands-on-ci-cd-for-spring-boot-applications-using-github-actions-and-aws-1cbc1e2c9d54
 
 CI/CD
 https://faun.pub/setup-a-circleci-pipeline-for-a-containerized-spring-boot-app-93045fa060de
