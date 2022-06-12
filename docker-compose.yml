@@ -84,6 +84,7 @@ services:
       - configurations-service
       - gateway-service
       - rabbitmq
+      - mysql
     networks:
       - eprocure-network
   workflow-service:
@@ -107,33 +108,8 @@ services:
       - discovery-service
       - gateway-service
       - configurations-service
-      - setups-service
       - rabbitmq
-    networks:
-      - eprocure-network
-  setups-service:
-    image: pgichure/e-procure/setups-service:1.0.0
-    container_name: setups-service
-    build:
-      args:
-        - APP_NAME=setups-service
-        - APP_VERSION=1.0.0
-    environment:
-      - SPRING_RABBITMQ_HOST=rabbitmq
-      - JAVA_OPTS=
-         -DEUREKA_SERVER=http://discovery-service:8761/eureka
-         -DCONFIG_SERVER=http://configurations-service:8888
-    restart: on-failure
-    expose:
-      - 8084
-    ports:
-      - 8084:8084
-    depends_on:
-      - discovery-service
-      - configurations-service
-      - gateway-service
-      - workflow-service
-      - rabbitmq
+      - mysql
     networks:
       - eprocure-network
   employees-service:
@@ -160,10 +136,11 @@ services:
       - setups-service
       - workflow-service
       - rabbitmq
+      - mysql
     networks:
       - eprocure-network      
   rabbitmq:
-    image: rabbitmq:3.5.3-management
+    image: rabbitmq:3.9.20-management
     container_name: rabbitmq  
     restart: always
     ports:
@@ -172,10 +149,10 @@ services:
     networks:
       - eprocure-network
   mysql:
-    image: mysql:8.0.17
+    image: mysql:8.0.29
     container_name: mysql
     ports:
-      - 3306:3306
+      - 3307:3307
     environment:
       MYSQL_DATABASE: e_procure_db
       MYSQL_ROOT_PASSWORD: Root123#@!
