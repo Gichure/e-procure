@@ -3,6 +3,9 @@ a. authentication service to handle system/organization profiles, system permiss
 b. add zipkin service
 c. add frontend service
 
+Documentation
+https://phauer.com/2017/rest-api-documentation-swagger-asciidoc/
+
 Docker Composer notes
 https://www.kindsonthegenius.com/introduction-to-docker-compose-with-spring-boot-example/
 https://www.sivalabs.in/microservices-part-2-configuration-management-spring-cloud-config-vault/
