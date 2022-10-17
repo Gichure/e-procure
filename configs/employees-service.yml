@@ -3,9 +3,12 @@ spring:
     name: employees-service
   rabbitmq:
     host: localhost
-    port: 15672
+    port: 5672
     username: guest
     password: guest
+  mvc:
+   pathmatch:
+     matching-strategy: ANT_PATH_MATCHER
 server:
   port: 8085
 eureka:
