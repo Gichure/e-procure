@@ -3,7 +3,7 @@ spring:
     name: setups-service
   rabbitmq:
     host: localhost
-    port: 5672
+    port: 15672
     username: guest
     password: guest
 server:
@@ -24,21 +24,6 @@ management:
           - env
           - health
           - info
-  datasource:
-    hikari:
-      connection-test-query: SELECT 1
-      maximum-pool-size: 50
-      minimum-idle: 5
-    url: jdbc:mysql://localhost:3306/eprocure_setups_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: dev
-    password: Dev123#@!
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    platform: mysql
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        ddl-auto: update
 logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
