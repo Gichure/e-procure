@@ -1,2 +1,20 @@
-spring.application.name=setups-service
-spring.config.import=configserver:${CONFIG_SERVER:http://localhost:8888}
+spring:
+  application:
+    name: setups-service
+  config:
+    import: optional:configserver:${CONFIG_SERVER:http://localhost:8888}
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 50
+      minimum-idle: 5
+    url: jdbc:mysql://localhost:3306/eprocure_setups_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: dev
+    password: Dev123#@!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        ddl-auto: update
