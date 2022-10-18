@@ -39,7 +39,13 @@ spring:
       - id: payments
         uri: lb://payments-service
         predicates:
-        - Path=/payments        
+        - Path=/payments
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-doc        
 info:
   app:
     name: ${spring.application.name}

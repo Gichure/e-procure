@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pgichure.eprocure.setups.controllers;
+package com.pgichure.eprocure.employees.controllers;
 
 import java.util.List;
 
@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pgichure.eprocure.setups.dtos.AddressDto;
-import com.pgichure.eprocure.setups.services.AddressServiceI;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -30,80 +27,76 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
- * The Address controller
  * @author pgichure
  *
  */
 @RestController
-@RequestMapping(value = "/addresses")
+@RequestMapping(value = "/employees")
 @RequiredArgsConstructor
-@Tag(name = "Address", description = "The Address API")
-public class AddressController {
-	
-	private final AddressServiceI addressService;
-	
+@Tag(name = "Employee", description = "The Employee API")
+public class EmployeeController {
+
 	@PostMapping
-	@Operation(summary = "Create an address")
+	@Operation(summary = "Create an employee")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "201", description = "Created the address", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
+	  @ApiResponse(responseCode = "201", description = "Created the employee", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid details supplied", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Endpoint not found", content = @Content) })
-	public ResponseEntity<AddressDto> save(@Parameter(description = "The address details") @RequestBody AddressDto address){
-		return ResponseEntity.status(HttpStatus.CREATED).body(addressService.save(address));
+	public ResponseEntity<?> save(@Parameter(description = "The employee details") @RequestBody Object employee){
+		return ResponseEntity.status(HttpStatus.CREATED).body(employee);
 	}
 	
 	@GetMapping("/{id}")
-	@Operation(summary = "Find address by ID")
+	@Operation(summary = "Find employee by ID")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "200", description = "Found the address", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
+	  @ApiResponse(responseCode = "200", description = "Found the employee", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Address not found", content = @Content) })
-	public ResponseEntity<AddressDto> find(@Parameter(description = "The ID to search details for") @PathVariable("id") Long id) throws Exception{
-		return ResponseEntity.status(HttpStatus.FOUND).body(addressService.findById(id));
+	public ResponseEntity<?> find(@Parameter(description = "The ID to search details for") @PathVariable("id") Long id) throws Exception{
+		return ResponseEntity.status(HttpStatus.FOUND).body(Object.class);
 	}
 	
 	@GetMapping
-	@Operation(summary = "Find addresses")
+	@Operation(summary = "Find employees")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "200", description = "Found the addresses", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)) }),
+	  @ApiResponse(responseCode = "200", description = "Found the employees", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Records not found", content = @Content) })
-	public ResponseEntity<List<AddressDto>> get(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String sortDir, @RequestParam String sort){
-		return ResponseEntity.ok().body(addressService.findAll(page, size, sortDir, sort));
+	public ResponseEntity<List<?>> get(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String sortDir, @RequestParam String sort){
+		return ResponseEntity.ok().build();
 	}
 	
 	@DeleteMapping("/{id}")
-	@Operation(summary = "Delete address by ID")
+	@Operation(summary = "Delete employee by ID")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "200", description = "Deleted the address", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
-	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "200", description = "Deleted the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
-	public ResponseEntity<AddressDto> delete(
+	public ResponseEntity<?> delete(
 			@PathVariable("id") Long id) throws Exception{
-		AddressDto address = addressService.delete(id);
-		return ResponseEntity.ok().body(address);
+		return ResponseEntity.ok().body(id);
 	}
 
 	@PutMapping("/{id}")
-	@Operation(summary = "Update address by ID")
+	@Operation(summary = "Update employee by ID")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
+	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
-	public ResponseEntity<AddressDto> update(
+	public ResponseEntity<?> update(
 			@Parameter(description = "The ID to update") @PathVariable("id") Long id,
-			@Parameter(description = "The address details") @RequestBody AddressDto address){
-		return ResponseEntity.status(HttpStatus.CREATED).body(addressService.update(id, address));
+			@Parameter(description = "The employee details") @RequestBody Object employee){
+		return ResponseEntity.status(HttpStatus.CREATED).body(employee);
 	}
 	
 }
