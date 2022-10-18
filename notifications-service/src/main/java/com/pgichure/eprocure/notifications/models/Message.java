@@ -47,21 +47,21 @@ public class Message extends Auditable<String>{
 	@Column(name = "subject")
 	private String subject;
 	
-	@Column(name = "msg_type")
+	@Column(name = "msg_type", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private MessageType messageType;
 	
 	@ManyToOne
 	private MessageBatch batch;
 	
-	@Column(name = "date_sent")
+	@Column(name = "date_sent", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateSent;
 	
-	@Column(name = "sender")
+	@Column(name = "sender", nullable = false)
 	private String sender;
 	
-	@Column(name = "recipient")
+	@Column(name = "recipient", nullable = false)
 	private String recipient;
 	
 	@Column(name = "receipient_id")

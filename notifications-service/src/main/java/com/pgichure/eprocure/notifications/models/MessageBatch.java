@@ -54,13 +54,13 @@ public class MessageBatch {
 	private @NonNull Date dateSent;
 
 	@Column(name = "sent_by")
-	private Long sentBy;
+	private String sentBy;
 	
 	@Column(name = "send_as_batch")
 	@Enumerated(EnumType.STRING)
 	private YesNo sendAsBatch;
 	
-	@Column(name = "msg_type")
+	@Column(name = "msg_type", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private @NonNull MessageType messageType;
 

@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pgichure.eprocure.notifications.dtos.MessageDto;
+import com.pgichure.eprocure.notifications.dtos.MessageBatchDto;
+import com.pgichure.eprocure.notifications.services.MessageBatchServiceI;
 import com.pgichure.eprocure.notifications.services.MessageServiceI;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,34 +35,34 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @RestController
-@RequestMapping(value = "/messages")
+@RequestMapping(value = "/message-batches")
 @RequiredArgsConstructor
-@Tag(name = "Message", description = "The Message API")
-public class MessageController {
+@Tag(name = "Message", description = "The Message Batch API")
+public class MessageBatchController {
 	
-	private final MessageServiceI service;
+	private final MessageBatchServiceI service;
 
 	@PostMapping
-	@Operation(summary = "Create an message")
+	@Operation(summary = "Create a message batch")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "201", description = "Created the message", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageDto.class)) }),
+	  @ApiResponse(responseCode = "201", description = "Created the message batch", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageBatchDto.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid details supplied", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Endpoint not found", content = @Content) })
-	public ResponseEntity<?> save(@Parameter(description = "The message details") @RequestBody MessageDto message){
+	public ResponseEntity<?> save(@Parameter(description = "The message batch details") @RequestBody MessageBatchDto message){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(message));
 	}
 	
 	@GetMapping("/{id}")
-	@Operation(summary = "Find message by ID")
+	@Operation(summary = "Find message batch by ID")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "200", description = "Found the message", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageDto.class)) }),
+	  @ApiResponse(responseCode = "200", description = "Found the message batch", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageBatchDto.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Address not found", content = @Content) })
-	public ResponseEntity<MessageDto> find(@Parameter(description = "The ID to search details for") @PathVariable("id") Long id) throws Exception{
+	public ResponseEntity<MessageBatchDto> find(@Parameter(description = "The ID to search details for") @PathVariable("id") Long id) throws Exception{
 		return ResponseEntity.status(HttpStatus.FOUND).body(service.findById(id));
 	}
 	
@@ -73,34 +74,34 @@ public class MessageController {
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Records not found", content = @Content) })
-	public ResponseEntity<List<MessageDto>> get(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String sortDir, @RequestParam String sort){
+	public ResponseEntity<List<MessageBatchDto>> get(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String sortDir, @RequestParam String sort){
 		return ResponseEntity.ok().body(service.findAll(page, size, sortDir, sort));
 	}
 	
 	@DeleteMapping("/{id}")
-	@Operation(summary = "Delete message by ID")
+	@Operation(summary = "Delete message batch by ID")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "200", description = "Deleted the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageDto.class)) }),
+	  @ApiResponse(responseCode = "200", description = "Deleted the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageBatchDto.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
-	public ResponseEntity<MessageDto> delete(
+	public ResponseEntity<MessageBatchDto> delete(
 			@PathVariable("id") Long id) throws Exception{
 		return ResponseEntity.ok().body(service.delete(id));
 	}
 
 	@PutMapping("/{id}")
-	@Operation(summary = "Update message by ID")
+	@Operation(summary = "Update message batch by ID")
 	@ApiResponses(value = { 
-	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageDto.class)) }),
+	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MessageBatchDto.class)) }),
 	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<?> update(
 			@Parameter(description = "The ID to update") @PathVariable("id") Long id,
-			@Parameter(description = "The message details") @RequestBody MessageDto message){
+			@Parameter(description = "The message batch details") @RequestBody MessageBatchDto message){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, message));
 	}
 	

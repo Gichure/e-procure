@@ -99,6 +99,7 @@ public class SetupsDatabaseSeeder {
   private void seedCompanyGroupsTable() throws Exception  {
       log.info("Seeding company groups..");
       List<CompanyGroupDto> groups = companyGroupService.findAllByCode("CG01");
+      /*
       if(groups.size() == 0)
     	  companyGroupService.save(CompanyGroupDto.builder()
     			  .address(AddressDto.builder()
@@ -115,6 +116,7 @@ public class SetupsDatabaseSeeder {
     			  .code("CG01")
     			  .name("Company Group 1")
     			  .build());
+    			  */
   }
   
   private void seedCompaniesTable() throws Exception  {
