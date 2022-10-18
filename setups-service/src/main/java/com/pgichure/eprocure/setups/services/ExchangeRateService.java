@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.pgichure.eprocure.setups.dtos.ExchangeRateDto;
 import com.pgichure.eprocure.setups.models.ExchangeRate;
-import com.pgichure.eprocure.setups.repositories.AddressRepository;
 import com.pgichure.eprocure.setups.repositories.ExchangeRateRepository;
 
 import lombok.RequiredArgsConstructor;

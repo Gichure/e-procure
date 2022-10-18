@@ -13,3 +13,5 @@ spring:
     password: Dev123#@!
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
+springdoc:
+  version: "1.0.0"

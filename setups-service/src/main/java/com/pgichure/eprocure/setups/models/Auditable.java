@@ -4,7 +4,6 @@
 package com.pgichure.eprocure.setups.models;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;

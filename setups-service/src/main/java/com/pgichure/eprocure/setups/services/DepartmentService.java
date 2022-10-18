@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.pgichure.eprocure.setups.dtos.DepartmentDto;
 import com.pgichure.eprocure.setups.models.Department;
-import com.pgichure.eprocure.setups.repositories.AddressRepository;
 import com.pgichure.eprocure.setups.repositories.DepartmentRepository;
 
 import lombok.RequiredArgsConstructor;

@@ -3,9 +3,6 @@
  */
 package com.pgichure.eprocure.setups.models;
 
-import java.time.ZonedDateTime;
-
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

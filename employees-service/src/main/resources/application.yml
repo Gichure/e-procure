@@ -18,3 +18,5 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         ddl-auto: update
+springdoc:
+  version: "1.0.0"
