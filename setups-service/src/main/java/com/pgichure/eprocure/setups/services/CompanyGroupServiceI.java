@@ -24,4 +24,5 @@ public interface CompanyGroupServiceI{
   
     public CompanyGroupDto delete(Long id) throws Exception;
   
+    public List<CompanyGroupDto> findAllByCode(String code);
 }

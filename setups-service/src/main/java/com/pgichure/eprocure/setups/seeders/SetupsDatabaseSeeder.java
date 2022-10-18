@@ -9,9 +9,13 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import com.pgichure.eprocure.setups.dtos.AddressDto;
+import com.pgichure.eprocure.setups.dtos.CompanyGroupDto;
 import com.pgichure.eprocure.setups.dtos.CountryDto;
 import com.pgichure.eprocure.setups.dtos.CurrencyDto;
+import com.pgichure.eprocure.setups.enums.AddressType;
 import com.pgichure.eprocure.setups.models.Country;
+import com.pgichure.eprocure.setups.services.CompanyGroupServiceI;
 import com.pgichure.eprocure.setups.services.CountryServiceI;
 import com.pgichure.eprocure.setups.services.CurrencyServiceI;
 
@@ -30,6 +34,8 @@ public class SetupsDatabaseSeeder {
 	private final CountryServiceI countryService;
 	
 	private final CurrencyServiceI currencyService;
+	
+	private final CompanyGroupServiceI companyGroupService; 
   
   
   @EventListener
@@ -92,6 +98,23 @@ public class SetupsDatabaseSeeder {
   
   private void seedCompanyGroupsTable() throws Exception  {
       log.info("Seeding company groups..");
+      List<CompanyGroupDto> groups = companyGroupService.findAllByCode("CG01");
+      if(groups.size() == 0)
+    	  companyGroupService.save(CompanyGroupDto.builder()
+    			  .address(AddressDto.builder()
+    					  .addressType(AddressType.ORDINARY)
+    					  .building("ABC Building")
+    					  .city("Nairobi")
+    					  .contact_person("Paul Gichure")
+    					  .email("pg@gmail.com")
+    					  .mobileNumber("0000000")
+    					  .physicalAddress("4th Floor")
+    					  .postalAddress("001")
+    					  .zipCode("00100")
+    					  .build())
+    			  .code("CG01")
+    			  .name("Company Group 1")
+    			  .build());
   }
   
   private void seedCompaniesTable() throws Exception  {

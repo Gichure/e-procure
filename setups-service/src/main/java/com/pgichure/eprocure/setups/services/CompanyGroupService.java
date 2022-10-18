@@ -70,5 +70,12 @@ public class CompanyGroupService implements CompanyGroupServiceI{
 		companyGroupRepository.delete(group);
 		return modelMapper.map(group, CompanyGroupDto.class);
 	}
+
+	@Override
+	public List<CompanyGroupDto> findAllByCode(String code) {
+		List<CompanyGroup> groups = companyGroupRepository.findAllByCode(code);
+		return groups.stream().map(group -> modelMapper.map(group, CompanyGroupDto.class))
+				.collect(Collectors.toList());
+	}
 	
 }
