@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pgichure.eprocure.setups.dtos.AddressDto;
@@ -65,7 +66,7 @@ public class AddressService implements AddressServiceI{
 
 	@Override
 	public List<AddressDto> findAll(int page, int size, String sortDir, String sort) {
-		PageRequest pageRequest = PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
+		PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort));
 		List<Address> addresses = addressRepository.findAll(pageRequest).getContent();
 		return addresses.stream().map(address -> modelMapper.map(address, AddressDto.class))
 				.collect(Collectors.toList());

@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 /**
  * @author pgichure
@@ -66,5 +67,8 @@ public class MessageDto implements Serializable{
 	
 	@Schema(name="remarks", description="The remarks")
 	private String remarks;
+	
+	@Schema(name="companyId", description="The company ID")
+	private @NonNull Long companyId;
 	
 }

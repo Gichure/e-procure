@@ -24,6 +24,7 @@ import com.pgichure.eprocure.notifications.enums.YesNo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 /**
  * @author pgichure
@@ -81,5 +82,8 @@ public class Message extends Auditable<String>{
 	
 	@Column(name = "remarks")
 	private String remarks;
+	
+	@Column(name = "company_id", nullable = false)
+	private @NonNull Long companyId;
 
 }

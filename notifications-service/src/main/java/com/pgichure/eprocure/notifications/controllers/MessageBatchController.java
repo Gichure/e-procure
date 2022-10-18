@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pgichure.eprocure.notifications.dtos.MessageBatchDto;
 import com.pgichure.eprocure.notifications.services.MessageBatchServiceI;
-import com.pgichure.eprocure.notifications.services.MessageServiceI;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -50,8 +49,8 @@ public class MessageBatchController {
 	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Endpoint not found", content = @Content) })
-	public ResponseEntity<?> save(@Parameter(description = "The message batch details") @RequestBody MessageBatchDto message){
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(message));
+	public ResponseEntity<?> save(@Parameter(description = "The message batch details") @RequestBody MessageBatchDto batch){
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(batch));
 	}
 	
 	@GetMapping("/{id}")
@@ -101,8 +100,8 @@ public class MessageBatchController {
 	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<?> update(
 			@Parameter(description = "The ID to update") @PathVariable("id") Long id,
-			@Parameter(description = "The message batch details") @RequestBody MessageBatchDto message){
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, message));
+			@Parameter(description = "The message batch details") @RequestBody MessageBatchDto batch){
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, batch));
 	}
 	
 }

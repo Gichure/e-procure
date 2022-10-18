@@ -39,7 +39,7 @@ import lombok.NonNull;
 @NoArgsConstructor
 @Table(name = "message_batches")
 @Entity
-public class MessageBatch {
+public class MessageBatch extends Auditable<String>{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -47,7 +47,7 @@ public class Auditable<T>{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUpdated;
 	
-	@Column(name="uuid", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+	@Column(name="uuid", columnDefinition = "VARCHAR(255)", updatable = false, nullable = false)
 	private String uuid = UUID.randomUUID().toString();
 	
 }
