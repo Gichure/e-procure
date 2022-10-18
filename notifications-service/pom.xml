@@ -8,7 +8,10 @@
   <artifactId>notifications-service</artifactId>
   <name>${app.name} Notifications Service</name>
   <dependencies>
-    
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-mail</artifactId>
+	</dependency>
   </dependencies>
   <build>
     <finalName>${project.artifactId}-${project.version}</finalName>
