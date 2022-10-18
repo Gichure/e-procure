@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedBy;
@@ -31,6 +32,9 @@ import lombok.Data;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class Auditable<T> implements Serializable{
+	
+	@Transient
+	private static final long serialVersionUID = 1L;
 
 	@CreatedBy
 	@Column(name = "created_by", updatable = false, nullable = false)

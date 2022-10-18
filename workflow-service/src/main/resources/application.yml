@@ -13,5 +13,9 @@ spring:
     password: Dev123#@!
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      ddl-auto: update
 springdoc:
   version: "1.0.0"

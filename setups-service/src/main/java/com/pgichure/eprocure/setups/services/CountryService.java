@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pgichure.eprocure.setups.dtos.CountryDto;
@@ -59,8 +60,8 @@ public class CountryService implements CountryServiceI{
 
 	@Override
 	public List<CountryDto> findAll(int page, int size, String sortDir, String sort) {
-		PageRequest pageRequest = PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
-		List<Country> addresses = repository.findAll(pageRequest).getContent();
+		PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort));
+		List<Country> addresses = repository.findAll();
 		return addresses.stream().map(country -> modelMapper.map(country, CountryDto.class))
 				.collect(Collectors.toList());
 	}

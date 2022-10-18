@@ -14,9 +14,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        ddl-auto: update
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      ddl-auto: update
 springdoc:
   version: "1.0.0"

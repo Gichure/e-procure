@@ -67,14 +67,14 @@ public class CountryController {
 	}
 	
 	@GetMapping
-	@Operation(summary = "Find countries")
+	@Operation(summary = "Get countries")
 	@ApiResponses(value = { 
 			  @ApiResponse(responseCode = "200", description = "Found the records", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)) }),
 			  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
 			  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
 			  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 			  @ApiResponse(responseCode = "404", description = "Records not found", content = @Content) })
-	public ResponseEntity<List<CountryDto>> get(@RequestParam Integer page, @RequestParam Integer size,@RequestParam String sortDir, @RequestParam String sort){
+	public ResponseEntity<List<CountryDto>> get(@RequestParam(name = "page", required= false, defaultValue = "1") Integer page, @RequestParam Integer size,@RequestParam String sortDir, @RequestParam String sort){
 		return ResponseEntity.ok().body(service.findAll(page, size, sortDir, sort));
 	}
 	
