@@ -32,6 +32,10 @@ spring:
         uri: lb://orders-service
         predicates:
         - Path=/orders
+      - id: notifications
+        uri: lb://notifications-service
+        predicates:
+        - Path=/notifications
       - id: invoices
         uri: lb://invoices-service
         predicates:
