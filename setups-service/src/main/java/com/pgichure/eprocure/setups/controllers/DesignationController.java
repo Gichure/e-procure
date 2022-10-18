@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pgichure.eprocure.setups.dtos.AddressDto;
-import com.pgichure.eprocure.setups.dtos.CompanyDto;
 import com.pgichure.eprocure.setups.dtos.DesignationDto;
 import com.pgichure.eprocure.setups.services.DesignationServiceI;
 

@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pgichure.eprocure.setups.dtos.AddressDto;
-import com.pgichure.eprocure.setups.dtos.CompanyDto;
 import com.pgichure.eprocure.setups.dtos.DepartmentDto;
-import com.pgichure.eprocure.setups.models.Department;
 import com.pgichure.eprocure.setups.services.DepartmentServiceI;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -104,7 +101,7 @@ public class DepartmentController {
 	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
 	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<DepartmentDto> update(@Parameter(description = "The ID to update") @PathVariable("id") Long id,
-			@RequestBody DepartmentDto department){
+			@Parameter(description = "The department details") @RequestBody DepartmentDto department){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, department));
 	}
 	
