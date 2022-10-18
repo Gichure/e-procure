@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pgichure.eprocure.setups.dtos.AddressDto;
 import com.pgichure.eprocure.setups.services.AddressServiceI;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -34,73 +37,72 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "/addresses")
 @RequiredArgsConstructor
+@Tag(name = "Address", description = "The Address API")
 public class AddressController {
 	
 	private final AddressServiceI addressService;
 	
 	@PostMapping
-	@ApiOperation(value = "Save an address" ,notes = "Returns the object created.", response = AddressDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully created the record"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<AddressDto> save(@RequestBody AddressDto address){
+	@Operation(summary = "Create an address")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Created the address", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid details supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Endpoint not found", content = @Content) })
+	public ResponseEntity<AddressDto> save(@Parameter(description = "The address details") @RequestBody AddressDto address){
 		return ResponseEntity.status(HttpStatus.CREATED).body(addressService.save(address));
 	}
 	
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Get an Address by ID", response = AddressDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved the resource"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<AddressDto> find(@PathVariable("id") Long id) throws Exception{
+	@Operation(summary = "Find address by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Found the address", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Address not found", content = @Content) })
+	public ResponseEntity<AddressDto> find(@Parameter(description = "The ID to search details for") @PathVariable("id") Long id) throws Exception{
 		return ResponseEntity.status(HttpStatus.FOUND).body(addressService.findById(id));
 	}
 	
 	@GetMapping
-	@ApiOperation(value = "View a list of addresses", response = List.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved list"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<List<AddressDto>> get(@RequestParam Integer page, @RequestParam Integer size,@RequestParam String sortDir, @RequestParam String sort){
+	@Operation(summary = "Find addresses")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Found the addresses", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Records not found", content = @Content) })
+	public ResponseEntity<List<AddressDto>> get(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String sortDir, @RequestParam String sort){
 		return ResponseEntity.ok().body(addressService.findAll(page, size, sortDir, sort));
 	}
 	
 	@DeleteMapping("/{id}")
-	@ApiOperation(value = "Delete an address by ID", response = AddressDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully deleted the address"),
-			@ApiResponse(code = 401, message = "You are not authorized to delete the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Delete address by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Deleted the address", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<AddressDto> delete(
-			@ApiParam(value = "The ID of the address to delete", required = true)
 			@PathVariable("id") Long id) throws Exception{
 		AddressDto address = addressService.delete(id);
 		return ResponseEntity.ok().body(address);
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value = "Update an address" ,notes = "Returns the updated address object created.", response = AddressDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully updated the address"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Update address by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = AddressDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<AddressDto> update(
-			@ApiParam(value = "The ID of the address to delete", required = true) Long id,
-			@ApiParam(value = "Address details to be updated in database table", required = true)
-			@RequestBody AddressDto address){
+			@Parameter(description = "The ID to update") @PathVariable("id") Long id,
+			@Parameter(description = "The address details") @RequestBody AddressDto address){
 		return ResponseEntity.status(HttpStatus.CREATED).body(addressService.update(id, address));
 	}
 	

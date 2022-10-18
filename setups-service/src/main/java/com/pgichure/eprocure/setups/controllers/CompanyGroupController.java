@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pgichure.eprocure.setups.dtos.CompanyGroupDto;
 import com.pgichure.eprocure.setups.services.CompanyGroupServiceI;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -34,73 +37,71 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "/company-groups")
 @RequiredArgsConstructor
+@Tag(name = "Company", description = "The Company API")
 public class CompanyGroupController {
 	
 	private final CompanyGroupServiceI service;
 	
 	@PostMapping
-	@ApiOperation(value = "Save company group" ,notes = "Returns the object created.", response = CompanyGroupDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully created the record"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<CompanyGroupDto> save(@RequestBody CompanyGroupDto group){
+	@Operation(summary = "Create a company group")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Created the company group", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyGroupDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid details supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Endpoint not found", content = @Content) })
+	public ResponseEntity<CompanyGroupDto> save(@Parameter(description = "The company group details") @RequestBody CompanyGroupDto group){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(group));
 	}
 	
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Get an Company Group by ID", response = CompanyGroupDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved the resource"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<CompanyGroupDto> find(@PathVariable("id") Long id) throws Exception{
+	@Operation(summary = "Find company group by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Found the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyGroupDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
+	public ResponseEntity<CompanyGroupDto> find(@Parameter(description = "The ID to search") @PathVariable("id") Long id) throws Exception{
 		return ResponseEntity.status(HttpStatus.FOUND).body(service.findById(id));
 	}
 	
 	@GetMapping
-	@ApiOperation(value = "View a list of company groups", response = List.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved list"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Find company groups")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "200", description = "Found the records", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)) }),
+			  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+			  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+			  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+			  @ApiResponse(responseCode = "404", description = "Records not found", content = @Content) })
 	public ResponseEntity<List<CompanyGroupDto>> get(@RequestParam Integer page, @RequestParam Integer size,@RequestParam String sortDir, @RequestParam String sort){
 		return ResponseEntity.ok().body(service.findAll(page, size, sortDir, sort));
 	}
 	
 	@DeleteMapping("/{id}")
-	@ApiOperation(value = "Delete an company by group ID", response = CompanyGroupDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully deleted the company group"),
-			@ApiResponse(code = 401, message = "You are not authorized to delete the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Delete company group by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Deleted the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyGroupDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<CompanyGroupDto> delete(
-			@ApiParam(value = "The ID of the company group to delete", required = true)
-			@PathVariable("id") Long id) throws Exception{
+			@Parameter(description = "The ID to delete") @PathVariable("id") Long id) throws Exception{
 		CompanyGroupDto group = service.delete(id);
 		return ResponseEntity.ok().body(group);
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value = "Update an company group" ,notes = "Returns the updated company group object created.", response = CompanyGroupDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully updated the company group"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<CompanyGroupDto> update(
-			@ApiParam(value = "The ID of the company to delete", required = true) Long id,
-			@ApiParam(value = "Company Group details to be updated in database table", required = true)
-			@RequestBody CompanyGroupDto group){
+	@Operation(summary = "Update company group by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyGroupDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
+	public ResponseEntity<CompanyGroupDto> update(@Parameter(description = "The ID to update") @PathVariable("id") Long id,
+			@Parameter(description = "The company group details") @RequestBody CompanyGroupDto group){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, group));
 	}
 	

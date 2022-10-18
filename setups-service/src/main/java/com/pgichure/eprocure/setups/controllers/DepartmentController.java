@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pgichure.eprocure.setups.dtos.DepartmentDto;
 import com.pgichure.eprocure.setups.services.DepartmentServiceI;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -34,73 +37,71 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "/departments")
 @RequiredArgsConstructor
+@Tag(name = "Department", description = "The Department API")
 public class DepartmentController {
 	
 	private final DepartmentServiceI service;
 	
 	@PostMapping
-	@ApiOperation(value = "Save a department" ,notes = "Returns the object created.", response = DepartmentDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully created the record"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<DepartmentDto> save(@RequestBody DepartmentDto department){
+	@Operation(summary = "Create a department")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Created the department", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = DepartmentDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid details supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Endpoint not found", content = @Content) })
+	public ResponseEntity<DepartmentDto> save(@Parameter(description = "The department details") @RequestBody DepartmentDto department){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(department));
 	}
 	
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Get an department by ID", response = DepartmentDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved the resource"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<DepartmentDto> find(@PathVariable("id") Long id) throws Exception{
+	@Operation(summary = "Find department by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Found the department", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = DepartmentDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
+	public ResponseEntity<DepartmentDto> find(@Parameter(description = "The ID to search") @PathVariable("id") Long id) throws Exception{
 		return ResponseEntity.status(HttpStatus.FOUND).body(service.findById(id));
 	}
 	
 	@GetMapping
-	@ApiOperation(value = "View a list of departments", response = List.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved list"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Find departments")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "200", description = "Found the records", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)) }),
+			  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+			  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+			  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+			  @ApiResponse(responseCode = "404", description = "Records not found", content = @Content) })
 	public ResponseEntity<List<DepartmentDto>> get(@RequestParam Integer page, @RequestParam Integer size,@RequestParam String sortDir, @RequestParam String sort){
 		return ResponseEntity.ok().body(service.findAll(page, size, sortDir, sort));
 	}
 	
 	@DeleteMapping("/{id}")
-	@ApiOperation(value = "Delete an department by ID", response = DepartmentDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully deleted the object"),
-			@ApiResponse(code = 401, message = "You are not authorized to delete the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Delete department by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Deleted the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = DepartmentDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<DepartmentDto> delete(
-			@ApiParam(value = "The ID of the object to delete", required = true)
-			@PathVariable("id") Long id) throws Exception{
+			@Parameter(description = "The ID to delete") @PathVariable("id") Long id) throws Exception{
 		DepartmentDto department = service.delete(id);
 		return ResponseEntity.ok().body(department);
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value = "Update a department" ,notes = "Returns the updated department object created.", response = DepartmentDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully updated the object"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<DepartmentDto> update(
-			@ApiParam(value = "The ID of the object to delete", required = true) Long id,
-			@ApiParam(value = "Object details to be updated in database table", required = true)
-			@RequestBody DepartmentDto department){
+	@Operation(summary = "Update department by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = DepartmentDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
+	public ResponseEntity<DepartmentDto> update(@Parameter(description = "The ID to update") @PathVariable("id") Long id,
+			@Parameter(description = "The department details") @RequestBody DepartmentDto department){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, department));
 	}
 	

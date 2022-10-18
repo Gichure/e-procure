@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pgichure.eprocure.setups.dtos.CompanyDto;
 import com.pgichure.eprocure.setups.services.CompanyServiceI;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -34,73 +37,71 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "/companies")
 @RequiredArgsConstructor
+@Tag(name = "Company", description = "The Company API")
 public class CompanyController {
 	
 	private final CompanyServiceI service;
 	
 	@PostMapping
-	@ApiOperation(value = "Save a company" ,notes = "Returns the object created.", response = CompanyDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully created the record"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<CompanyDto> save(@RequestBody CompanyDto company){
+	@Operation(summary = "Create a company")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Created the company", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid details supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Endpoint not found", content = @Content) })
+	public ResponseEntity<CompanyDto> save(@Parameter(description = "The company details") @RequestBody CompanyDto company){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(company));
 	}
 	
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Get an Company by ID", response = CompanyDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved the resource"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<CompanyDto> find(@PathVariable("id") Long id) throws Exception{
+	@Operation(summary = "Find company by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Found the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
+	public ResponseEntity<CompanyDto> find(@Parameter(description = "The ID to search") @PathVariable("id") Long id) throws Exception{
 		return ResponseEntity.status(HttpStatus.FOUND).body(service.findById(id));
 	}
 	
 	@GetMapping
-	@ApiOperation(value = "View a list of companies", response = List.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully retrieved list"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Find companies")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "200", description = "Found the records", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)) }),
+			  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+			  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+			  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+			  @ApiResponse(responseCode = "404", description = "Records not found", content = @Content) })
 	public ResponseEntity<List<CompanyDto>> get(@RequestParam Integer page, @RequestParam Integer size,@RequestParam String sortDir, @RequestParam String sort){
 		return ResponseEntity.ok().body(service.findAll(page, size, sortDir, sort));
 	}
 	
 	@DeleteMapping("/{id}")
-	@ApiOperation(value = "Delete an company by ID", response = CompanyDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully deleted the company"),
-			@ApiResponse(code = 401, message = "You are not authorized to delete the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
+	@Operation(summary = "Delete company by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "200", description = "Deleted the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
 	public ResponseEntity<CompanyDto> delete(
-			@ApiParam(value = "The ID of the company to delete", required = true)
-			@PathVariable("id") Long id) throws Exception{
+			@Parameter(description = "The ID to delete") @PathVariable("id") Long id) throws Exception{
 		CompanyDto company = service.delete(id);
 		return ResponseEntity.ok().body(company);
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value = "Update an company" ,notes = "Returns the updated company object created.", response = CompanyDto.class)
-	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Successfully updated the company"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-	})
-	public ResponseEntity<CompanyDto> update(
-			@ApiParam(value = "The ID of the company to delete", required = true) Long id,
-			@ApiParam(value = "Company details to be updated in database table", required = true)
-			@RequestBody CompanyDto company){
+	@Operation(summary = "Update company by ID")
+	@ApiResponses(value = { 
+	  @ApiResponse(responseCode = "201", description = "Updated the record", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CompanyDto.class)) }),
+	  @ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+	  @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+	  @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+	  @ApiResponse(responseCode = "404", description = "Record not found", content = @Content) })
+	public ResponseEntity<CompanyDto> update(@Parameter(description = "The ID to update") @PathVariable("id") Long id,
+			@Parameter(description = "The company details") @RequestBody CompanyDto company){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, company));
 	}
 	

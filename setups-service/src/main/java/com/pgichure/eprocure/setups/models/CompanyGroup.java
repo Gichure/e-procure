@@ -3,9 +3,6 @@
  */
 package com.pgichure.eprocure.setups.models;
 
-import java.time.ZonedDateTime;
-
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.pgichure.eprocure.setups.enums.OpenStatus;
 
@@ -37,6 +35,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompanyGroup extends Auditable<String>{
+	
+	@Transient
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
