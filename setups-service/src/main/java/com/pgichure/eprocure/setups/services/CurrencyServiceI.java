@@ -23,5 +23,7 @@ public interface CurrencyServiceI{
     public List<CurrencyDto> findAll(int page, int size, String sortDir, String sort);
   
     public CurrencyDto delete(Long id) throws Exception;
+    
+    public List<CurrencyDto> findAllByCode(String code);
   
 }

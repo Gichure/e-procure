@@ -33,6 +33,11 @@ public class CountryService implements CountryServiceI{
 	@Override
 	public CountryDto save(CountryDto countryDto) {
 		
+		List<Country> countries = repository.findAllByCode(countryDto.getCode());
+		
+		if(countries.size() > 0)
+			throw new IllegalArgumentException("Country code already in use!");
+		
 		Country country = modelMapper.map(countryDto, Country.class);
 		country = this.repository.save(country);
 		return modelMapper.map(country, CountryDto.class);
@@ -61,7 +66,7 @@ public class CountryService implements CountryServiceI{
 	@Override
 	public List<CountryDto> findAll(int page, int size, String sortDir, String sort) {
 		PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort));
-		List<Country> addresses = repository.findAll();
+		List<Country> addresses = repository.findAll(pageRequest).getContent();
 		return addresses.stream().map(country -> modelMapper.map(country, CountryDto.class))
 				.collect(Collectors.toList());
 	}
@@ -71,6 +76,11 @@ public class CountryService implements CountryServiceI{
 		Country country = repository.findById(countryId).orElseThrow(() -> new Exception("Country not found - " + countryId));
 		repository.delete(country);
 		return modelMapper.map(country, CountryDto.class);
+	}
+
+	@Override
+	public List<Country> findAllByCode(String code) {
+		return repository.findAllByCode(code);
 	}
 	
 }

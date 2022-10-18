@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pgichure.eprocure.setups.dtos.CurrencyDto;
@@ -59,7 +60,7 @@ public class CurrencyService implements CurrencyServiceI{
 
 	@Override
 	public List<CurrencyDto> findAll(int page, int size, String sortDir, String sort) {
-		PageRequest pageRequest = PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
+		PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort));// PageRequest.of(page, size, null,/* Sort.Direction.fromString(sortDir)*/sort);
 		List<Currency> addresses = repository.findAll(pageRequest).getContent();
 		return addresses.stream().map(country -> modelMapper.map(country, CurrencyDto.class))
 				.collect(Collectors.toList());
@@ -70,6 +71,13 @@ public class CurrencyService implements CurrencyServiceI{
 		Currency country = repository.findById(currencyId).orElseThrow(() -> new Exception("Currency not found - " + currencyId));
 		repository.delete(country);
 		return modelMapper.map(country, CurrencyDto.class);
+	}
+
+	@Override
+	public List<CurrencyDto> findAllByCode(String code) {
+		List<Currency> addresses = repository.findAllByCode(code);
+		return addresses.stream().map(country -> modelMapper.map(country, CurrencyDto.class))
+				.collect(Collectors.toList());
 	}
 	
 }

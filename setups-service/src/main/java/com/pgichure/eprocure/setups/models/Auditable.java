@@ -5,6 +5,7 @@ package com.pgichure.eprocure.setups.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -53,10 +54,9 @@ public class Auditable<T> implements Serializable{
 	@Column(name = "date_updated")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUpdated;
+
+	@Column(name="uuid", columnDefinition = "VARCHAR(255)", insertable = true, updatable = false, nullable = false)
+	private String uuid = String.valueOf(UUID.randomUUID());
 	
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Type(type="uuid-char")
-	@Column(name="uuid", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
-	private String uuid;
 	
 }
