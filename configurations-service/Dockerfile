@@ -1,5 +1,5 @@
 #### Stage 1: Build the application
-FROM openjdk:8-jdk-alpine as build
+FROM maven:3.9.9-eclipse-temurin-23-alpine AS build
 
 LABEL maintainer="Paul Gichure"
 
@@ -13,6 +13,9 @@ COPY .mvn .mvn
 # Copy the pom.xml file
 COPY pom.xml .
 
+RUN dos2unix mvnw
+
+RUN chmod a+x ./mvnw
 # Build all the dependencies in preparation to go offline. 
 # This is a separate step so the dependencies will be cached unless 
 # the pom.xml file has changed.
@@ -26,7 +29,7 @@ RUN ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 #### Stage 2: A minimal docker image with command to run the app 
-FROM openjdk:8-jre-alpine
+FROM eclipse-temurin:23-jre-alpine
 
 ARG DEPENDENCY=/app/target/dependency
 

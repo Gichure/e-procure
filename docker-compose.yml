@@ -1,4 +1,4 @@
-version: '3.7'
+#version: '3.7'
 
 services:
   discovery-service:
@@ -16,7 +16,7 @@ services:
       - 8761:8761
     depends_on:
       - rabbitmq
-    network_mode: "host"
+#    network_mode: "host"
     networks:
       - eprocure-network
   configurations-service:
@@ -140,7 +140,7 @@ services:
     networks:
       - eprocure-network      
   rabbitmq:
-    image: rabbitmq:3.9.20-management
+    image: rabbitmq:4.1-rc
     container_name: rabbitmq  
     restart: always
     ports:
@@ -149,7 +149,7 @@ services:
     networks:
       - eprocure-network
   mysql:
-    image: mysql:8.0.29
+    image: mysql:8.4
     container_name: mysql
     ports:
       - 3307:3307
@@ -160,3 +160,4 @@ services:
       MYSQL_PASSWORD: Dev123#@!
 networks:
   eprocure-network:
+    driver: bridge

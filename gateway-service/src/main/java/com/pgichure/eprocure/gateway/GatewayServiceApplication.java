@@ -12,14 +12,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 /**
- * @author Hp
+ * @author pgichure
  *
  */
-@EnableEurekaClient
 @SpringBootApplication
 public class GatewayServiceApplication {
 	

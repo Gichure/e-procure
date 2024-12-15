@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -18,7 +17,6 @@ import io.swagger.v3.oas.models.info.License;
  * @author pgichure
  *
  */
-@EnableEurekaClient
 @SpringBootApplication
 public class SetupsServiceApplication {
 
