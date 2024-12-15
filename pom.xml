@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.6</version>
+		<version>3.4.0</version>
   	</parent>
   	<groupId>com.pgichure</groupId>
   	<artifactId>e-procure</artifactId>
@@ -15,7 +15,7 @@
 		<developer>
 			<id>pgichure</id>
 			<name>Paul Gichure</name>
-			<email>hello@gichure.me.ke</email>
+			<email>gichurepaul@gmail.com</email>
 			<roles>
 				<role>Lead Developer</role>
 			</roles>
@@ -30,29 +30,31 @@
 	  <module>setups-service</module>
 	  <module>employees-service</module>
 	  <module>workflow-service</module>
+	  <module>notifications-service</module>
 	</modules>
 	<properties>
 		<app.name>E-Procurement System</app.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<java.version>1.8</java.version>
-		<springdoc.version>1.6.12</springdoc.version>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<java.version>21</java.version>
+		<springdoc.version>1.8.0</springdoc.version>
 		<lombok.version>1.18.20</lombok.version>
 		<json.version>20190722</json.version>
 		<joda.version>2.10.13</joda.version>
 		<tess4j.version>5.2.0</tess4j.version>
 		<pdfbox.version>3.0.0-RC1</pdfbox.version>
 		<freetts.version>1.2.2</freetts.version>
-		<spring-cloud.version>2021.0.2</spring-cloud.version>
+		<spring-cloud.version>4.2.0</spring-cloud.version>
 		<junit.version>5.9.0-M1</junit.version>
 		<docker-plugin.version>1.4.13</docker-plugin.version>
-		<camunda.version>7.15.0</camunda.version>
+		<camunda.version>7.22.0</camunda.version>
 		<javafaker.version>1.0.2</javafaker.version>
+		<modelmapper.version>3.1.0</modelmapper.version>
 	</properties>
 	<dependencyManagement>
-		<dependencies>
+	<!--	<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -60,7 +62,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-		</dependencies>
+		</dependencies>-->
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
@@ -70,6 +72,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>${spring-cloud.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,9 +85,11 @@
 		    <artifactId>junit-jupiter</artifactId>
 		    <scope>test</scope>
 		</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-config</artifactId>
+		    <version>${spring-cloud.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
@@ -120,8 +125,8 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -163,7 +168,7 @@
 		<dependency>
 		    <groupId>org.modelmapper</groupId>
 		    <artifactId>modelmapper</artifactId>
-		    <version>3.1.0</version>
+		    <version>${modelmapper.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

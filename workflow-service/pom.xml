@@ -18,7 +18,6 @@
             </dependency>
         </dependencies>
     	</dependencyManagement>
-	
 	<dependencies>
 		<dependency>
 		    <groupId>org.camunda.bpm.springboot</groupId>
