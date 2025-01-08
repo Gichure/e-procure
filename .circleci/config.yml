@@ -1,6 +1,6 @@
 #version: 2.1
 orbs:
-  gh: circleci/github-cli@1.0
+  gh: circleci/github-cli@2.6.0
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -11,7 +11,7 @@ jobs:
     # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
-     - image: cimg/openjdk:17.0
+     - image: cimg/openjdk:23.0.1
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     parallelism: 4
@@ -39,7 +39,7 @@ jobs:
             - ~/.m2
           key: e-procure-{{ checksum "~/pom-checksum" }}
       - setup_remote_docker:
-          version: 20.10.14
+          version: default
           docker_layer_caching: true
       # Use mvn clean and package as the standard maven build phase
       - run:
