@@ -1,4 +1,4 @@
-#version: 2.1
+version: 2.1
 orbs:
   gh: circleci/github-cli@1.0
 # Define a job to be invoked later in a workflow.
@@ -39,7 +39,7 @@ jobs:
             - ~/.m2
           key: e-procure-{{ checksum "~/pom-checksum" }}
       - setup_remote_docker:
-          version: 20.10.14
+          #version: 20.10.14
           docker_layer_caching: true
       # Use mvn clean and package as the standard maven build phase
       - run:
